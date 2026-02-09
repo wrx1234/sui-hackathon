@@ -6,7 +6,8 @@
 import fs from 'fs';
 import path from 'path';
 
-const WALRUS_PUBLISHER = process.env.WALRUS_PUBLISHER || 'https://publisher.testnet.walrus.space';
+const WALRUS_PUBLISHER = process.env.WALRUS_PUBLISHER || 'https://walrus-testnet-publisher.nodes.guru';
+const WALRUS_AGGREGATOR = process.env.WALRUS_AGGREGATOR || 'https://aggregator.walrus-testnet.walrus.space';
 const LOCAL_LOG_DIR = path.join(process.cwd(), 'logs');
 
 interface LogEntry {

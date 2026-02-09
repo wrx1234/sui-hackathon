@@ -7,18 +7,18 @@
 
 | Tool | Models | Usage Count |
 |------|--------|-------------|
-| OpenClaw | claude-opus-4.6 | 21 |
+| OpenClaw | claude-opus-4.6 | 22 |
 
 ## Summary
 
-- **Total AI interactions**: 21
+- **Total AI interactions**: 22
 - **Development period**: 2026-02-09 to 2026-02-09
 - **Primary tool**: OpenClaw (autonomous AI agent framework)
 - **Primary model**: Claude Opus 4.6 (Anthropic)
 
 ## Usage by Category
 
-### Code (5 interactions)
+### Code (6 interactions)
 
 **#1** [2026-02-09T18:12]
 - Prompt: `创建 AI prompt logger 工具，满足黑客松 AI 使用声明要求`
@@ -38,6 +38,14 @@
 
 **#5** [2026-02-09T19:45]
 - Prompt: `Commit: feat: strategy engine (trend/mean_reversion) + risk management module | Files: agent/main.ts,contracts/Move.toml,contracts/sources/vault.move,scripts/setup.sh,`
+- Response summary: Auto-logged from git commit
+
+**#6** [2026-02-09T21:56]
+- Prompt: `Commit: fix: Cetus SDK field mapping (amountOut/paths) + mainnet quotes working
+
+- SDK returns amountOut (hex BN) not outputAmount, paths not routes
+- 1 SUI = 0.936660 USDC (via CETUS)
+- 1 SUI = 60.26`
 - Response summary: Auto-logged from git commit
 
 ### Design (4 interactions)
