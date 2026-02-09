@@ -148,6 +148,29 @@
 
 **核心差异化**：Base 项目都是单点工具，我们做**全链路闭环**（情报→决策→执行→记录→分析）
 
+## 🔥 Social Sniper — 病毒传播引擎
+
+### 核心循环
+```
+Twitter 监控 $SUI 关键词
+    → AI 分析推文情绪（看涨/看跌）
+        → Agent 自动执行交易
+            → 引用推文回复（带盈亏证明 + Walrus 链接）
+                → KOL 粉丝看到 → 传播 → 更多人关注
+```
+
+### 模块
+- **twitter_monitor.ts** — 监控 $SUI/$CETUS 等关键词推文
+- **sentiment.ts** — AI 分析推文情绪 → 交易信号
+- **social_poster.ts** — 自动发推/回复/引用，同步 Moltbook
+- **viral_engine.ts** — 里程碑播报、交易播报、KOL 互动
+
+### 开关配置
+- `TWITTER_ENABLED=false` — Twitter API 开关
+- `MOLTBOOK_ENABLED=true` — Moltbook 发帖开关
+- `AUTO_REPLY=false` — 自动回复 KOL 开关
+- `TRADE_BROADCAST=true` — 交易播报开关
+
 ## 安全设计
 - Agent 钱包与用户主钱包分离
 - 单笔交易限额（可配置）
