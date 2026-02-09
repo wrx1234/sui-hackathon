@@ -5,3 +5,7 @@ __pycache__/
 .DS_Store
 build/
 dist/
+node_modules/
+logs/
+.env
+bot.log

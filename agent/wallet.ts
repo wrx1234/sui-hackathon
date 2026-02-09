@@ -1,0 +1,103 @@
+/**
+ * 钱包模块 — Sui Ed25519 钱包管理
+ * 创建/导入/查余额/签名交易
+ */
+
+import { SuiJsonRpcClient, getJsonRpcFullnodeUrl } from '@mysten/sui/jsonRpc';
+import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
+import { Transaction } from '@mysten/sui/transactions';
+
+// 网络配置
+const NETWORK = process.env.SUI_NETWORK || 'testnet';
+
+// 创建 Sui 客户端
+export function createClient(network: string = NETWORK): SuiJsonRpcClient {
+  const url = getJsonRpcFullnodeUrl(network as 'mainnet' | 'testnet' | 'devnet');
+  return new SuiJsonRpcClient({ url });
+}
+
+// 生成新钱包
+export function generateWallet(): { keypair: Ed25519Keypair; address: string; privateKey: string } {
+  const keypair = new Ed25519Keypair();
+  const address = keypair.getPublicKey().toSuiAddress();
+  const privateKey = keypair.getSecretKey();
+  
+  return {
+    keypair,
+    address,
+    privateKey: Buffer.from(privateKey).toString('hex'),
+  };
+}
+
+// 从私钥导入钱包
+export function importWallet(privateKeyHex: string): { keypair: Ed25519Keypair; address: string } {
+  const secretKey = Buffer.from(privateKeyHex, 'hex');
+  const keypair = Ed25519Keypair.fromSecretKey(secretKey);
+  const address = keypair.getPublicKey().toSuiAddress();
+  return { keypair, address };
+}
+
+// 查询余额
+export async function getBalance(client: SuiJsonRpcClient, address: string): Promise<{
+  sui: string;
+  suiFormatted: string;
+  tokens: Array<{ coinType: string; balance: string; formatted: string }>;
+}> {
+  // SUI 余额
+  const suiBalance = await client.getBalance({ owner: address });
+  const suiFormatted = (Number(suiBalance.totalBalance) / 1e9).toFixed(4);
+  
+  // 所有 token 余额
+  const allBalances = await client.getAllBalances({ owner: address });
+  const tokens = allBalances.map(b => ({
+    coinType: b.coinType,
+    balance: b.totalBalance,
+    formatted: (Number(b.totalBalance) / 1e9).toFixed(4),
+  }));
+  
+  return {
+    sui: suiBalance.totalBalance,
+    suiFormatted,
+    tokens,
+  };
+}
+
+// 转账 SUI
+export async function transferSui(
+  client: SuiJsonRpcClient,
+  keypair: Ed25519Keypair,
+  to: string,
+  amountMist: bigint
+) {
+  const tx = new Transaction();
+  const [coin] = tx.splitCoins(tx.gas, [amountMist]);
+  tx.transferObjects([coin], to);
+  
+  const result = await client.signAndExecuteTransaction({
+    signer: keypair,
+    transaction: tx,
+    options: { showEffects: true },
+  });
+  
+  return result;
+}
+
+// 测试入口
+async function main() {
+  console.log('🔑 生成新钱包...');
+  const wallet = generateWallet();
+  console.log(`地址: ${wallet.address}`);
+  console.log(`私钥: ${wallet.privateKey.substring(0, 16)}...`);
+  
+  const client = createClient();
+  console.log(`\n💰 查询余额 (${NETWORK})...`);
+  const balance = await getBalance(client, wallet.address);
+  console.log(`SUI: ${balance.suiFormatted}`);
+  console.log(`所有 token:`, balance.tokens);
+  
+  console.log('\n✅ 钱包模块测试通过');
+}
+
+if (process.argv[1]?.includes('wallet')) {
+  main().catch(console.error);
+}
