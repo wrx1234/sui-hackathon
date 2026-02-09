@@ -90,9 +90,52 @@
 
 > ⚠️ Community Favourite 不能与 Track 获奖者重叠
 
-### 评审流程
-- **Phase 1**: Suixclaw Agent 自动审核所有提交，每个 Track 选出 Top 10
-- **Phase 2**: 待确认（消息截断）
+### 评审流程（三阶段）
+
+**Phase 1: Shortlisting**
+- Suixclaw Agent 自动审核所有提交，每 Track 选 Top 10
+- 产出详细审计报告，公开发布到 m/sui on Moltbook 和 DeepSurge
+- 评估维度：资格、技术实力、创意、Sui 集成度
+
+**Phase 2: Cross-Track Voting**
+- Track 1 入围者投票选 Track 2 前 5
+- Track 2 入围者投票选 Track 1 前 5
+- 通过 DeepSurge 论坛帖子投票
+
+**Phase 3: Community Favourite**
+- 所有项目投票（Track 前 5 获奖者不参与被选，但可投票）
+- 投出 5 个 Community Favourite（$200/个）
+- 也作为 Track 第 5 名并列时的 tiebreak
+
+### 投票规则
+- 1 个提交 = 1 票
+- 每个 DeepSurge 账号最多 2 票（最多提交 2 个项目）
+- 只能投**不在自己赛道**的项目（cross-track）
+- 双赛道提交者：如果两个项目都入围，必须选一个赛道投票
+- 不能投自己的项目
+- 必须参与各阶段投票
+
+### 参赛资格
+1. 在 DeepSurge 提交（https://deepsurge.xyz）
+2. 由 AI Agent 开发或主要由 AI Agent 开发（**黑客松开始后**）
+3. 使用至少一个 **Sui Stack 组件**
+4. 有**可验证的 working demo**
+5. 完整的 DeepSurge Profile + **Sui 钱包地址**
+
+### ⏰ 截止时间
+- **2026-02-11 23:00 PST** = **2026-02-12 15:00 UTC+8（北京时间）**
+
+### 注册方式
+1. https://www.deepsurge.xyz/create-account
+2. 邮箱或社交登录
+3. 完善 Profile + 添加 Sui 钱包地址
+4. 注册并提交: https://www.deepsurge.xyz/hackathons/cd96178d-5e11-4d56-9f02-1bf157de2552/register
+
+### 官方资源
+- **Sui Stack Claude Code Plugin**: https://github.com/0x-j/sui-stack-claude-code-plugin
+- **Sui 文档**: https://docs.sui.io
+- **OpenClaw 文档**: https://docs.openclaw.ai/
+- **社区 Sui Move Skill**: https://clawhub.ai/EasonC13/sui-move
 
 ### Track 1: Safety & Security 🔐 — "Fighting Magic with Magic"
 - **核心**: 你有 root 级访问权限，已发现多个关键漏洞。需要构建免疫系统
@@ -296,8 +339,9 @@ TokenPocket (@TokenPocket_TP) 推文完整梳理了 OpenClaw 生态：
 - **Day 3 (2/12)**: 联调测试 + 部署 + 提交
 
 ### ⚠️ 仍需确认
-1. **Mission OpenClaw 截止时间** — 帖子评审部分被截断，需要完整的评审流程和提交方式
+1. **Mission OpenClaw 是否已注册** — 需要在 DeepSurge 创建账号 + 绑定 Sui 钱包
 2. **Vibe Hackathon 是否已注册** — 需要 deepsurge 账号
+3. ⚠️ **Mission OpenClaw 截止: 2026-02-12 15:00 北京时间**（和 Vibe 很接近！）
 
 ---
 
