@@ -11,6 +11,13 @@ import { logAction, getTodayLogs, formatLogs, flushLogs } from '../agent/logger.
 // 配置
 const BOT_TOKEN = process.env.TG_BOT_TOKEN || '8205271388:AAE1SJ2sqdfikBhX2tTEMk9WPfdKTJA96Ys';
 const NETWORK = process.env.SUI_NETWORK || 'testnet';
+const ADMIN_IDS = (process.env.TG_ADMIN_IDS || '').split(',').filter(Boolean);
+
+// 权限检查
+function isAdmin(ctx: Context): boolean {
+  if (ADMIN_IDS.length === 0) return true; // 未配置则允许所有人
+  return ADMIN_IDS.includes(String(ctx.from?.id || ''));
+}
 
 // 初始化
 const bot = new Bot(BOT_TOKEN);

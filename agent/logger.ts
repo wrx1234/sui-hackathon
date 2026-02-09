@@ -99,6 +99,10 @@ export async function flushLogs(): Promise<string | null> {
 }
 
 // 获取今日日志
+export function getLogBuffer(): string[] {
+  return logBuffer.map(e => JSON.stringify(e));
+}
+
 export function getTodayLogs(): LogEntry[] {
   ensureLogDir();
   const today = new Date().toISOString().split('T')[0];

@@ -20,43 +20,45 @@ export function createClient(network: string = NETWORK): SuiJsonRpcClient {
 export function generateWallet(): { keypair: Ed25519Keypair; address: string; privateKey: string } {
   const keypair = new Ed25519Keypair();
   const address = keypair.getPublicKey().toSuiAddress();
+  // 导出 bech32 格式私钥 (suiprivkey1...)
   const privateKey = keypair.getSecretKey();
   
   return {
     keypair,
     address,
-    privateKey: Buffer.from(privateKey).toString('hex'),
+    privateKey,
   };
 }
 
 // 从私钥导入钱包
-export function importWallet(privateKeyHex: string): { keypair: Ed25519Keypair; address: string } {
-  const secretKey = Buffer.from(privateKeyHex, 'hex');
-  const keypair = Ed25519Keypair.fromSecretKey(secretKey);
+export function importWallet(privateKey: string): { keypair: Ed25519Keypair; address: string } {
+  // 支持 bech32 (suiprivkey1...) 格式
+  const keypair = Ed25519Keypair.fromSecretKey(privateKey);
   const address = keypair.getPublicKey().toSuiAddress();
   return { keypair, address };
 }
 
 // 查询余额
 export async function getBalance(client: SuiJsonRpcClient, address: string): Promise<{
-  sui: string;
+  sui: bigint;
   suiFormatted: string;
   tokens: Array<{ coinType: string; balance: string; formatted: string }>;
 }> {
   // SUI 余额
   const suiBalance = await client.getBalance({ owner: address });
-  const suiFormatted = (Number(suiBalance.totalBalance) / 1e9).toFixed(4);
+  const suiBigInt = BigInt(suiBalance.totalBalance);
+  const suiFormatted = (Number(suiBigInt) / 1e9).toFixed(9);
   
   // 所有 token 余额
   const allBalances = await client.getAllBalances({ owner: address });
   const tokens = allBalances.map(b => ({
     coinType: b.coinType,
     balance: b.totalBalance,
-    formatted: (Number(b.totalBalance) / 1e9).toFixed(4),
+    formatted: (Number(BigInt(b.totalBalance)) / 1e9).toFixed(9),
   }));
   
   return {
-    sui: suiBalance.totalBalance,
+    sui: suiBigInt,
     suiFormatted,
     tokens,
   };
@@ -87,7 +89,7 @@ async function main() {
   console.log('🔑 生成新钱包...');
   const wallet = generateWallet();
   console.log(`地址: ${wallet.address}`);
-  console.log(`私钥: ${wallet.privateKey.substring(0, 16)}...`);
+  console.log(`私钥: [已隐藏]`);
   
   const client = createClient();
   console.log(`\n💰 查询余额 (${NETWORK})...`);
