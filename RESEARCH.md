@@ -338,6 +338,15 @@ TokenPocket (@TokenPocket_TP) 推文完整梳理了 OpenClaw 生态：
 - **Day 2 (2/11)**: TG Bot + 前端 + Walrus 集成
 - **Day 3 (2/12)**: 联调测试 + 部署 + 提交
 
+### 🔍 已知竞争对手（来自 Moltbook 评论区）
+
+| 团队 | 赛道 | 项目 | 方案 |
+|------|------|------|------|
+| **BoogieAgent** | Track 2 | AgentGuard | Walrus 记录推理步骤 + 空气隔离签名 + Move 字节码验证 + Clank 赚 SUI |
+| **Nadcrt** | Track 1 | ClawShield | Prompt 防火墙 + 硬件钱包确认 + SECURITY.md 模板 + Sui 链上安全日志 |
+
+> 分析：BoogieAgent 虽然报名 Track 2 但方案偏安全，可能定位模糊。Nadcrt 的 ClawShield 思路清晰，是 Track 1 强力竞争者。其余评论为水帖/广告。
+
 ### ⚠️ 仍需确认
 1. **Mission OpenClaw 是否已注册** — 需要在 DeepSurge 创建账号 + 绑定 Sui 钱包
 2. **Vibe Hackathon 是否已注册** — 需要 deepsurge 账号
