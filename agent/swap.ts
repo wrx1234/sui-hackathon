@@ -43,18 +43,28 @@ export async function getSwapQuote(
     byAmountIn: true,
   });
 
-  if (!result || !result.routes || result.routes.length === 0) {
+  // SDK 返回字段: amountOut (hex BN), paths (非 routes)
+  const r = result as any;
+  if (!r || r.error || (!r.paths && !r.routes) || (r.paths?.length === 0 && r.routes?.length === 0)) {
     return null;
   }
 
+  // amountOut 可能是 hex BN 字符串或数字
+  const amountOutRaw = r.amountOut || r.outputAmount || '0';
+  const amountOutNum = typeof amountOutRaw === 'string' && amountOutRaw.match(/^[0-9a-f]+$/i) && !amountOutRaw.match(/^\d+$/)
+    ? parseInt(amountOutRaw, 16) 
+    : Number(amountOutRaw);
+
   return {
-    routes: result.routes,
-    outputAmount: result.outputAmount?.toString() || '0',
-    outputFormatted: (Number(result.outputAmount?.toString() || '0') / 1e9).toFixed(6),
+    routes: r.paths || r.routes || [],
+    outputAmount: amountOutNum,
+    outputFormatted: (amountOutNum / 1e9).toFixed(6),
     inputAmount: amount.toString(),
     inputFormatted: (Number(amount) / 1e9).toFixed(6),
     fromToken,
     toToken,
+    quoteID: r.quoteID,
+    rawResult: r,
   };
 }
 
@@ -124,7 +134,8 @@ export function formatSwapPreview(
   fromName: string,
   toName: string,
   inputAmount: string,
-  outputAmount: string,
+  outputAmount: string | bigint | number,
+  slippage?: number,
 ): string {
   return `🔄 Swap 预览
 ━━━━━━━━━━━━━━━
