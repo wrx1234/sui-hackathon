@@ -75,24 +75,46 @@
 ### 基本信息
 - **推广方**: @SuiNetwork（Sui 官方 X 账号，111万粉丝）
 - **推文**: https://x.com/SuiNetwork/status/2019869538196799724
-- **奖金**: **$20,000 USDC on Sui**
-- **详情页**: https://www.moltbook.com/post/b36e9f84-2f89-4ece-a7a0-c9a7991421ae（JS 渲染，未能完整获取）
+- **详情页**: https://www.moltbook.com/post/b36e9f84-2f89-4ece-a7a0-c9a7991421ae
+- **口号**: "Calling All Agents 🦞"
+- **理念**: OpenClaw 让 AI 拥有"真正的手和脚"，可在本地执行命令和控制浏览器
+- **人类参与**: 允许人类监督 Agent 参赛
 
-### 推文原文
-> 🦞 Get ready for Mission: OpenClaw is a hackathon to build autonomous AI agents with real system access (browser + terminal).
->
-> Two tracks:
-> 🔐 Safety & Security
-> 🤖 Local God Mode (your own Jarvis)
->
-> $20K in USDC on Sui. Build with AI agents. Ship a demo.
+### 💰 奖金分配（总计 $20,000 USDC on Sui）
 
-### 两个赛道
-
-| 赛道 | 方向 | 描述 |
+| 类别 | 金额 | 名额 |
 |------|------|------|
-| **Safety & Security** 🔐 | AI 安全 | 构建安全相关的 AI Agent 工具/框架 |
-| **Local God Mode** 🤖 | 个人 AI 助手 | 类 Jarvis 的全功能自主 AI Agent |
+| Track 1: Safety & Security | $1,900 × 5 | 前 5 名 |
+| Track 2: Local God Mode | $1,900 × 5 | 前 5 名 |
+| Community Favourite | $200 × 5 | 5 个社区最爱 |
+
+> ⚠️ Community Favourite 不能与 Track 获奖者重叠
+
+### 评审流程
+- **Phase 1**: Suixclaw Agent 自动审核所有提交，每个 Track 选出 Top 10
+- **Phase 2**: 待确认（消息截断）
+
+### Track 1: Safety & Security 🔐 — "Fighting Magic with Magic"
+- **核心**: 你有 root 级访问权限，已发现多个关键漏洞。需要构建免疫系统
+- **官方项目创意**:
+  1. **The Wallet Air-Gap** — 创建中间件，OpenClaw 提议交易但需硬件钱包签名执行，防止热钱包被盗
+  2. **Injection Hunter** — SECURITY.md 协议，过滤邮件/网站中的恶意 prompt
+  3. **Self-Hardening Script** — Agent 自动配置防火墙、加密密钥、设置 git 版本控制（给自己穿防弹衣）
+  4. **链上推理证明** — 在 **Walrus** 上发布 Agent 每步推理的加密证明，失控时可追溯，用 **Seal** 加密保护隐私
+
+### Track 2: Local God Mode 🤖 — "The Jarvis Edition"
+- **核心**: 构建常驻本机的 Agent，主动管理操作系统，不等 prompt 主动干活
+- **官方项目创意**:
+  1. **The "Deep Clean" Butler** — 自主数字管家，监控文件夹，用 shell 工具（ffmpeg/unzip/git pull）自动整理
+  2. **The Infinite Money Glitch** — Agent 自动赚取加密货币支付运行成本，收入 > 支出
+  3. **The Mad Sniper** — 自动化复杂 Web 任务（银行/公用事业），分析网络流量优化到极致
+  4. **Walrus-backed Agent 社交网络** — 类 Moltbook，Agent 互相通信和支付，**全部基于 Sui 技术栈**（Walrus 存储 + Sui 支付）
+
+### 关键技术关键词
+- **Walrus**: Sui 生态去中心化存储（多次提及，是重要集成点）
+- **Seal**: Sui 生态数据加密方案
+- **Moltbook**: Agent 社交网络（作为参考和集成目标）
+- **Sui Stack**: 鼓励在 Sui 上重建 Agent 基础设施
 
 ### OpenClaw 框架是什么？
 - **官网**: https://openclaw.ai
@@ -200,61 +222,82 @@ TokenPocket (@TokenPocket_TP) 推文完整梳理了 OpenClaw 生态：
 
 ## 四、可参考的项目创意与技术方案
 
-### 🎯 针对 Sui Vibe Hackathon（紧急，3天内）
+### 🎯 核心策略：一个项目打两个黑客松
 
-#### 创意 A: AI DeFi Agent for Sui（Cetus 赛道）
-- **概念**: 基于 OpenClaw 框架的 Sui DeFi Agent，通过 Telegram 对话执行 swap
-- **技术栈**: OpenClaw + Cetus Aggregator SDK + Sui SDK + Move 智能合约
-- **亮点**: 自然语言交易（"帮我把 100 SUI 换成 CETUS，找最优路径"）
-- **可行性**: Aggregator SDK 已有完整封装，3天足够做 MVP
+基于 Mission OpenClaw 的完整信息，最佳策略是做一个**同时符合两个黑客松要求**的项目：
+- Vibe Hackathon: Sui Tech Stack / Cetus 赛道
+- Mission OpenClaw: Local God Mode 赛道
 
-#### 创意 B: StableYield Agent（StableLayer 赛道）
-- **概念**: AI Agent 自动管理稳定币收益策略
-- **技术栈**: StableLayer SDK + Sui SDK + 前端
-- **亮点**: 自动 mint BrandUSD → 存入收益池 → 监控 APY → 自动复投
-- **可行性**: SDK 接口简单（mint/burn/claim），差异化好
+### ⭐ 推荐方案：Sui DeFi Jarvis（"The Infinite Money Glitch" on Sui）
 
-#### 创意 C: Sui AI Agent Hub（Tech Stack 赛道）
-- **概念**: Sui 版 ClawMart — Agent API 市场，用 SUI 代币支付
-- **亮点**: 将 Base 生态的 Agent 商业化模式移植到 Sui
-- **风险**: 3天时间紧张
+**完美契合 OpenClaw Track 2 的官方创意 "The Infinite Money Glitch"**：
+> Agent 自动赚取加密货币支付运行成本，收入 > 支出
 
-### 🎯 针对 Mission: OpenClaw Hackathon
+**核心概念**：
+- 一个运行在 OpenClaw 上的 AI Agent
+- 通过 TG Bot 与用户交互
+- 自主管理 Sui 链上资产（DeFi 交易、收益农场）
+- 集成 Cetus Aggregator 做最优路径 swap
+- 在 Walrus 上记录所有操作（透明+可审计）
+- 目标：自给自足的 AI 交易员
 
-#### 创意 D: Safety Track — Agent Sandbox Monitor
-- **概念**: 监控 AI Agent 行为的安全工具，检测异常操作（如未授权的文件删除、网络请求）
-- **技术**: OpenClaw 技能插件 + 行为日志分析 + 告警
+**技术栈**：
+- OpenClaw 框架（我们已在使用）
+- Sui SDK + Move 2024 智能合约
+- Cetus Aggregator SDK（满足 Vibe Cetus 赛道）
+- Walrus 存储（满足 OpenClaw 对 Sui Stack 的期待）
+- TG Bot 前端（@sui_kol_bot 已创建）
 
-#### 创意 E: Local God Mode — Sui DeFi Jarvis
-- **概念**: 全功能 Sui 链 AI 管家，集成钱包管理、DeFi 操作、NFT 交易、链上数据分析
-- **技术**: OpenClaw + Sui SDK + Cetus SDK + 链上数据索引
-- **亮点**: 一个 Telegram bot 管理全部 Sui 链资产
+**为什么这个方案最强**：
+1. 直接对应官方创意，评委一看就懂
+2. 集成 Cetus = 同时打 Vibe Cetus 赛道
+3. 用 Walrus 记录 = 展示 Sui 生态深度理解
+4. 我们有 Polymarket 机器人经验 = 不是纸上谈兵
+5. 我们真的在运行 OpenClaw = 最真实的参赛者
+
+### 其他可选方案
+
+#### 方案 B: Walrus Agent Social（对应官方创意 #4）
+- Moltbook 的 Sui 版本，Agent 通信和支付都在 Sui 上
+- 用 Walrus 存储社交数据
+- 风险：工程量大，3天紧张
+
+#### 方案 C: Self-Hardening Agent（Track 1 Safety）
+- Agent 自动加固安全（防火墙/加密/git）
+- 在 Walrus 上发布推理证明
+- 用 Seal 加密隐私数据
+- 优势：可以做 OpenClaw Skill 发布
+
+#### 方案 D: StableYield Agent（Vibe StableLayer 赛道）
+- AI Agent 自动管理稳定币收益
+- SDK 接口简单，但与 OpenClaw 结合度不如方案 A
 
 ---
 
 ## 五、我们的优势与切入点建议
 
 ### 优势分析
-1. **我们已经在运行 OpenClaw** — 对框架有深度了解，这是 Mission OpenClaw Hackathon 的最大优势
-2. **Sui + AI Agent 交叉点** — 两个黑客松都指向这个方向，市场验证了需求
-3. **Base 生态经验可迁移** — Clanker、ClawMart 等模式可以搬到 Sui
+1. **我们已经在运行 OpenClaw** — 这是 Mission OpenClaw Hackathon 的最大优势，我们不是临时参赛
+2. **Polymarket 机器人经验** — 已有完整的 AI 交易策略 + TG Bot 经验
+3. **TG Bot 已创建** — @sui_kol_bot 已就绪
+4. **Base 生态模式可迁移** — 把成熟模式搬到 Sui 蓝海
+5. **Moltbook 社区调研显示 Sui 是蓝海** — 零竞争
 
 ### 建议策略
 
-#### 短期（本周）
-- **优先级 1**: 确认 Mission OpenClaw Hackathon 的报名截止时间和详细规则（手动打开 moltbook 帖子）
-- **优先级 2**: 如果 Sui Vibe 还来得及（3天），选 Cetus 赛道做最小 MVP
-- **优先级 3**: 准备 Mission OpenClaw 参赛，选 Local God Mode 赛道
+#### 立即行动
+1. **确定方案 A（Sui DeFi Jarvis）** — 一个项目打两个黑客松
+2. **注册 Vibe Hackathon** — deepsurge 报名
+3. **确认 Mission OpenClaw 截止时间** — 如果截止更晚，可以先冲 Vibe 再完善
 
-#### 中期
-- 深入 Sui 生态的 AI Agent 基础设施建设
-- 参考 ClawMart 的 x402 微支付模式，在 Sui 上做 Agent 商业化
+#### 3天冲刺计划（Vibe 2/12 截止）
+- **Day 1 (2/10)**: Move 合约 + Agent 核心逻辑
+- **Day 2 (2/11)**: TG Bot + 前端 + Walrus 集成
+- **Day 3 (2/12)**: 联调测试 + 部署 + 提交
 
-### ⚠️ 需要补充的信息
-1. **Mission OpenClaw 详细规则** — moltbook 帖子需要在浏览器中打开查看
-2. **Mission OpenClaw 截止时间** — 推文未提及
-3. **$20K USDC 分配方式** — 两个赛道各多少？
-4. **已有参赛项目** — 需要查看提交情况评估竞争
+### ⚠️ 仍需确认
+1. **Mission OpenClaw 截止时间** — 帖子评审部分被截断，需要完整的评审流程和提交方式
+2. **Vibe Hackathon 是否已注册** — 需要 deepsurge 账号
 
 ---
 
