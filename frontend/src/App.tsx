@@ -238,6 +238,187 @@ export default function App() {
         </div>
       </section>
 
+      {/* ─── Social Sniper: Zero-cost Growth Engine ─── */}
+      <section className="py-24 px-6 bg-[#09090b]">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="text-indigo-400 text-sm tracking-[0.3em] mb-2">{t("GROWTH ENGINE", "增长引擎", lang)}</p>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
+              🎯 {t("Social Sniper", "社交狙击手", lang)}
+            </h2>
+            <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-4">
+              {t("AI-Powered Growth Engine", "AI 驱动增长引擎", lang)}
+            </h3>
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+              {t("Zero-cost user acquisition through intelligent social trading", "通过智能社交交易实现零成本用户获取", lang)}
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Flow Process */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <h4 className="text-2xl font-bold text-white mb-8">
+                {t("4-Step Viral Loop", "4 步病毒循环", lang)}
+              </h4>
+              
+              {[
+                { 
+                  icon: "🔍", 
+                  title: t("Monitor", "监控", lang), 
+                  desc: t("Scan Twitter/X for Sui token discussions", "扫描推特上的 Sui 代币讨论"), 
+                },
+                { 
+                  icon: "🧠", 
+                  title: t("Analyze", "分析", lang), 
+                  desc: t("AI sentiment analysis (Bullish/Bearish)", "AI 情感分析（看涨/看跌）", lang), 
+                },
+                { 
+                  icon: "⚡", 
+                  title: t("Execute", "执行", lang), 
+                  desc: t("Auto-trade based on signal confidence", "基于信号置信度自动交易", lang), 
+                },
+                { 
+                  icon: "💬", 
+                  title: t("Engage", "互动", lang), 
+                  desc: t("Reply to original tweet with results + invite link", "回复原推文并附上结果和邀请链接", lang), 
+                }
+              ].map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1, duration: 0.4 }}
+                  viewport={{ once: true }}
+                  className="relative"
+                >
+                  <div className="flex items-start gap-4 p-6 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm relative group">
+                    <GlowingEffect spread={30} glow proximity={48} borderWidth={1} />
+                    <div className="text-3xl">{step.icon}</div>
+                    <div>
+                      <h5 className="text-xl font-bold text-white mb-2">{step.title}</h5>
+                      <p className="text-zinc-400">{step.desc}</p>
+                    </div>
+                  </div>
+                  {i < 3 && (
+                    <div className="absolute left-8 -bottom-3 w-0.5 h-6 bg-gradient-to-b from-indigo-500 to-transparent" />
+                  )}
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Recent Snipes */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <h4 className="text-2xl font-bold text-white mb-8">
+                {t("Recent Snipes", "最近狙击", lang)}
+              </h4>
+              
+              {[
+                { 
+                  user: "@SuiWhale_", 
+                  sentiment: t("Bullish 92%", "看涨 92%", lang), 
+                  action: t("BUY 500 SUI", "买入 500 SUI", lang), 
+                  result: "+2.1%",
+                  color: "emerald"
+                },
+                { 
+                  user: "@CryptoAnalyst99", 
+                  sentiment: t("Bearish 85%", "看跌 85%", lang), 
+                  action: t("SELL 2000 CETUS", "卖出 2000 CETUS", lang), 
+                  result: "+1.4%",
+                  color: "rose"
+                }
+              ].map((snipe, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 + i * 0.1, duration: 0.4 }}
+                  viewport={{ once: true }}
+                  className="relative p-6 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm group"
+                >
+                  <GlowingEffect spread={25} glow proximity={40} borderWidth={1} />
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+                    <span className="text-white font-semibold">{snipe.user}</span>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-zinc-400 text-sm">{t("Sentiment", "情感", lang)}</span>
+                      <span className={`text-sm font-medium ${snipe.color === 'emerald' ? 'text-emerald-400' : 'text-rose-400'}`}>
+                        {snipe.sentiment}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-zinc-400 text-sm">{t("Action", "操作", lang)}</span>
+                      <span className="text-sm font-medium text-white">{snipe.action}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-zinc-400 text-sm">{t("Result", "结果", lang)}</span>
+                      <span className="text-sm font-bold text-emerald-400">{snipe.result}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+
+              <div className="relative p-6 rounded-xl border border-indigo-500/20 bg-indigo-500/5 backdrop-blur-sm">
+                <GlowingEffect spread={30} glow proximity={48} borderWidth={1} />
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-white">12,847</p>
+                    <p className="text-xs text-zinc-400">{t("Tweets Scanned", "扫描推文", lang)}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-white">342</p>
+                    <p className="text-xs text-zinc-400">{t("Signals Found", "发现信号", lang)}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-emerald-400">$0</p>
+                    <p className="text-xs text-zinc-400">{t("Marketing Cost", "营销成本", lang)}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-white">245K</p>
+                    <p className="text-xs text-zinc-400">{t("Impressions", "曝光量", lang)}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <a href={TG_LINK} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg hover:opacity-90 transition shadow-xl">
+              <Target className="w-5 h-5" />
+              {t("Enable Social Sniper", "启用社交狙击手", lang)}
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ─── Proof: TextShimmer ─── */}
       <section className="py-24 px-6">
         <div className="max-w-5xl mx-auto text-center">
