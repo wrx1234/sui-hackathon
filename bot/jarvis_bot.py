@@ -462,6 +462,7 @@ def main_keyboard(lang="cn"):
         [InlineKeyboardButton(_t("btn_vault"), callback_data="vault"),
          InlineKeyboardButton(_t("btn_settings"), callback_data="settings")],
         [InlineKeyboardButton(_t("btn_help"), callback_data="help")],
+        [InlineKeyboardButton("🇨🇳 中文" if lang == "en" else "🇬🇧 English", callback_data="lang_toggle")],
     ])
 
 def swap_keyboard():
@@ -1683,6 +1684,13 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await _send_yield_panel(q.message, uid)
 
     # ---- 双语切换 ----
+    elif data == "lang_toggle":
+        cur = get_lang(uid)
+        new_lang = "en" if cur == "cn" else "cn"
+        set_lang(uid, new_lang)
+        label = "🇬🇧 Switched to English" if new_lang == "en" else "🇨🇳 已切换为中文"
+        await q.message.reply_text(label, reply_markup=main_keyboard(new_lang))
+
     elif data == "lang_cn":
         set_lang(uid, "cn")
         await q.message.reply_text(
