@@ -1,23 +1,26 @@
 @import "tailwindcss";
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: #09090b;
-  color: #fafafa;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+@theme {
+  --animate-background-shine: background-shine 2.5s linear infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-bounce-slow: bounce 2s infinite;
 }
 
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --muted: #71717a;
+  --border: rgba(255,255,255,0.08);
+  --accent: #818cf8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--background); color: var(--foreground); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
-}
+@keyframes background-shine { from { background-position: 0 0; } to { background-position: -200% 0; } }
+@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+@keyframes pulse-glow { 0%,100% { box-shadow: 0 0 20px rgba(129,140,248,0.3); } 50% { box-shadow: 0 0 40px rgba(129,140,248,0.6), 0 0 80px rgba(129,140,248,0.2); } }
+@keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
