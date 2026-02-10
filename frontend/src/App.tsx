@@ -1,530 +1,266 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { SplineScene } from '@/components/ui/splite'
+import { Spotlight } from '@/components/ui/spotlight'
+import { GlassButton } from '@/components/ui/glass-button'
+import { FeaturesWithHoverEffects } from '@/components/ui/feature-hover'
+import { FeatureSteps } from '@/components/ui/feature-steps'
+import { BentoGrid, BentoCard } from '@/components/ui/bento-grid'
+import { CategoryList } from '@/components/ui/category-list'
+import { Features2 } from '@/components/ui/features-2'
+import { FinancialDashboard } from '@/components/ui/financial-dashboard'
 import {
-  Brain, Eye, Coins, Shield, Share2, Globe, ExternalLink, Github,
-  MessageCircle, ArrowRight, Zap, ChevronRight, Activity, BarChart3,
-  Wallet, TrendingUp, Clock, Target
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import { LampContainer } from "@/components/LampContainer";
-import { TextShimmer } from "@/components/TextShimmer";
-import { BackgroundGradientAnimation } from "@/components/BackgroundGradientAnimation";
-import { AuroraBackground } from "@/components/AuroraBackground";
-import { BentoCard, BentoGrid } from "@/components/BentoGrid";
-import { GlowingEffect } from "@/components/GlowingEffect";
+  IconArrowsExchange, IconChartLine, IconFish, IconPlant,
+  IconTag, IconRobot, IconChartPie, IconLock,
+} from '@tabler/icons-react'
+import {
+  Waves, Anchor, HardDrive, Shield, Brain, ArrowLeftRight,
+  Target, TrendingUp, Briefcase, Zap, ShieldCheck, BarChart3,
+  Crosshair, ArrowRight, Copy, CheckIcon,
+} from 'lucide-react'
 
-const TG_LINK = "https://t.me/SuiJarvisBot";
-const GITHUB_LINK = "https://github.com/wrx1234/sui-hackathon";
-const CONTRACT = "0x737a73b3a146d45694c341a22b62607e5a6e6b6496b91156217a7d2c91f7e65d";
+function App() {
+  const [lang, setLang] = useState<'en' | 'cn'>('en')
+  const [copied, setCopied] = useState(false)
+  const t = (en: string, cn: string) => lang === 'en' ? en : cn
 
-const t = (en: string, cn: string, lang: string) => (lang === "en" ? en : cn);
+  // ==================== DATA ====================
+  const features8 = [
+    { title: t('Smart Swap', '智能交易'), description: t('Optimal routing across 30+ DEXs via Cetus Aggregator', '通过 Cetus 聚合器跨 30+ DEX 最优路由'), icon: <IconArrowsExchange size={28} /> },
+    { title: t('AI Signals', 'AI 信号'), description: t('EMA, RSI, MACD multi-indicator analysis with real-time alerts', 'EMA/RSI/MACD 多指标分析，实时预警'), icon: <IconChartLine size={28} /> },
+    { title: t('Whale Tracker', '鲸鱼追踪'), description: t('Monitor large on-chain transactions in real-time', '实时监控链上大额交易动向'), icon: <IconFish size={28} /> },
+    { title: t('Pool Discovery', '新池发现'), description: t('First to spot high-yield liquidity pools', '第一时间发现高收益流动性池'), icon: <IconPlant size={28} /> },
+    { title: t('Limit Orders', '限价单'), description: t('Set target price, auto-execute when reached', '设定目标价，到价自动执行'), icon: <IconTag size={28} /> },
+    { title: t('Strategy Engine', '策略引擎'), description: t('Trend following, mean reversion, arbitrage — fully automated', '趋势跟踪/均值回归/套利——全自动执行'), icon: <IconRobot size={28} /> },
+    { title: t('Portfolio', '持仓管理'), description: t('Real-time portfolio tracking with PnL analytics', '实时持仓追踪，盈亏分析'), icon: <IconChartPie size={28} /> },
+    { title: t('Vault', '链上金库'), description: t('Move smart contract secured asset management', 'Move 智能合约保障资产安全'), icon: <IconLock size={28} /> },
+  ]
 
-// ─── Feature hover effect (from 21st.dev feature-hover pattern) ───
-const Feature = ({ title, description, icon, index }: { title: string; description: string; icon: React.ReactNode; index: number }) => (
-  <div
-    className={cn(
-      "flex flex-col lg:border-r py-10 relative group/feature border-white/10",
-      (index === 0 || index === 3) && "lg:border-l",
-      index < 3 && "lg:border-b"
-    )}
-  >
-    {index < 3 ? (
-      <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-indigo-500/10 to-transparent pointer-events-none" />
-    ) : (
-      <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none" />
-    )}
-    <div className="mb-4 relative z-10 px-10 text-zinc-400">{icon}</div>
-    <div className="text-lg font-bold mb-2 relative z-10 px-10">
-      <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-zinc-700 group-hover/feature:bg-indigo-500 transition-all duration-200 origin-center" />
-      <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-zinc-100">{title}</span>
-    </div>
-    <p className="text-sm text-zinc-400 max-w-xs relative z-10 px-10">{description}</p>
-  </div>
-);
+  const sniperSteps = [
+    { step: t('Monitor', '监控'), title: t('Monitor', '监控'), content: t('Scan Twitter/X 24/7 for Sui ecosystem token discussions. AI identifies relevant tweets from KOLs and traders.', '全天候扫描 Twitter/X 上 Sui 生态代币讨论，AI 识别 KOL 和交易员的相关推文。'), image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800' },
+    { step: t('Analyze', '分析'), title: t('Analyze', '分析'), content: t('GPT-4 powered sentiment analysis determines Bullish/Bearish direction with confidence scoring.', 'GPT-4 驱动的情感分析，判断看涨/看跌方向并给出置信度评分。'), image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800' },
+    { step: t('Execute', '执行'), title: t('Execute', '执行'), content: t('Auto-execute trades via Cetus DEX when confidence > 70%. Lightning-fast < 3s response.', '置信度 >70% 时通过 Cetus DEX 自动执行交易，闪电般 <3s 响应。'), image: 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800' },
+    { step: t('Engage', '互动'), title: t('Engage', '互动'), content: t('Reply to original tweet with trade results + invite link. Free organic exposure → growth flywheel.', '在原推文下回复交易结果 + 邀请链接。免费有机曝光 → 增长飞轮。'), image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800' },
+  ]
 
-export default function App() {
-  const [lang, setLang] = useState<"en" | "cn">("en");
+  const sniperStats = [
+    { value: '12,847', label: t('Tweets Scanned', '推文已扫描') },
+    { value: '342', label: t('Signals Found', '信号已发现') },
+    { value: '$0', label: t('Marketing Cost', '营销成本') },
+    { value: '245K', label: t('Impressions', '曝光量') },
+  ]
 
-  const features = [
-    { icon: <Brain className="w-6 h-6" />, title: t("AI Strategy Engine", "AI 策略引擎", lang), description: t("Autonomous trading decisions powered by multi-model AI analysis of on-chain data, social signals, and market patterns.", "多模型 AI 分析链上数据、社交信号和市场模式，自主交易决策。", lang) },
-    { icon: <Eye className="w-6 h-6" />, title: t("Real-time Monitoring", "实时监控", lang), description: t("24/7 surveillance of DeFi pools, whale movements, token launches, and arbitrage opportunities across Sui ecosystem.", "全天候监控 DeFi 池、巨鲸动态、代币发射和 Sui 生态套利机会。", lang) },
-    { icon: <Coins className="w-6 h-6" />, title: t("Auto Yield Farming", "自动挖矿", lang), description: t("Automatically discovers and rotates between the highest-yield farming opportunities on Cetus, Turbos, and more.", "自动发现并轮换 Cetus、Turbos 等最高收益的挖矿机会。", lang) },
-    { icon: <Shield className="w-6 h-6" />, title: t("Risk Management", "风险管理", lang), description: t("Built-in stop-loss, position sizing, and portfolio rebalancing to protect your capital during market downturns.", "内置止损、仓位管理和组合再平衡，在市场下跌时保护资金。", lang) },
-    { icon: <Share2 className="w-6 h-6" />, title: t("Cross-DEX Routing", "跨 DEX 路由", lang), description: t("Smart order routing across all Sui DEXes to find the best prices with minimal slippage and MEV protection.", "跨所有 Sui DEX 智能路由，最优价格、最小滑点和 MEV 保护。", lang) },
-    { icon: <Globe className="w-6 h-6" />, title: t("Telegram Native", "Telegram 原生", lang), description: t("Full control from Telegram. No web app needed. Just chat with Jarvis and manage your entire DeFi portfolio.", "完全通过 Telegram 控制。无需 Web 应用。与 Jarvis 对话管理整个 DeFi 组合。", lang) },
-  ];
+  const archCards = [
+    { name: 'Sui', Icon: Waves, description: t('Layer 1 blockchain with parallel execution and sub-second finality', 'Layer 1 区块链，并行执行，亚秒级确认'), className: 'lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2' },
+    { name: 'Cetus', Icon: Anchor, description: t('DEX aggregator routing across 30+ protocols for best price', 'DEX 聚合器，跨 30+ 协议寻找最优价格'), className: 'lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2' },
+    { name: 'Walrus', Icon: HardDrive, description: t('Decentralized storage for transparent, immutable operation logs', '去中心化存储，透明不可篡改的操作日志'), className: 'lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3' },
+    { name: 'Seal', Icon: Shield, description: t('On-chain encryption for secure strategy data storage', '链上加密，安全存储策略数据'), className: 'lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2' },
+    { name: 'OpenClaw', Icon: Brain, description: t('AI runtime powering autonomous agent decision-making', 'AI 运行时，驱动自主 Agent 决策'), className: 'lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3' },
+  ]
 
-  const steps = [
-    { num: "01", title: t("Open Telegram", "打开 Telegram", lang), desc: t("Search @SuiJarvisBot and hit Start", "搜索 @SuiJarvisBot 点击 Start", lang) },
-    { num: "02", title: t("Connect Wallet", "连接钱包", lang), desc: t("Create or import your Sui wallet securely", "安全创建或导入 Sui 钱包", lang) },
-    { num: "03", title: t("Let Jarvis Cook", "让 Jarvis 开干", lang), desc: t("Set your strategy and watch profits roll in", "设定策略，坐等收益", lang) },
-  ];
+  const stableCategories = [
+    { id: 1, title: 'JarvisUSD', subtitle: t('Branded stablecoin: deposit USDC, auto-yield, instant redeem', '品牌稳定币：存入 USDC，自动生息，随时赎回'), icon: <ArrowRight className="w-8 h-8" />, featured: true },
+    { id: 2, title: t('Yield Vault', '收益金库'), subtitle: t('Automated yield optimization across Sui DeFi protocols', '跨 Sui DeFi 协议自动收益优化'), icon: <TrendingUp className="w-8 h-8" /> },
+    { id: 3, title: t('Risk Shield', '风控盾'), subtitle: t('Multi-layer risk management with real-time monitoring', '多层风控，实时监控'), icon: <ShieldCheck className="w-8 h-8" /> },
+  ]
 
-  const stats = [
-    { value: "350%", label: t("Avg ROI", "平均 ROI", lang) },
-    { value: "24/7", label: t("Uptime", "运行时间", lang) },
-    { value: "<50ms", label: t("Execution", "执行速度", lang) },
-    { value: "0", label: t("Rugs Eaten", "被 Rug 次数", lang) },
-  ];
+  const securityFeatures = [
+    { icon: <HardDrive className="size-6" />, title: t('Walrus Logs', 'Walrus 日志'), description: t('Every trade, every decision — permanently stored on decentralized storage', '每笔交易、每个决策——永久存储在去中心化存储上') },
+    { icon: <Shield className="size-6" />, title: t('Move Vault', 'Move 金库'), description: t('Smart contract secured vault with multi-sig and time-lock', 'Move 智能合约金库，多签 + 时间锁保护') },
+    { icon: <BarChart3 className="size-6" />, title: t('On-Chain Verifiable', '链上可验证'), description: t('All operations traceable on Sui blockchain explorer', '所有操作可在 Sui 区块链浏览器上追溯验证') },
+  ]
 
-  const partners = ["Sui", "Move", "Cetus", "Turbos", "DeepBook", "Pyth", "Mysten Labs"];
+  const LogoIcon = ({ letter, bg }: { letter: string; bg: string }) => (
+    <div className={`w-9 h-9 flex items-center justify-center rounded-full font-bold text-white text-sm ${bg}`}>{letter}</div>
+  )
 
-  const archSteps = [
-    { label: t("Telegram Bot", "Telegram 机器人", lang), sub: t("User Interface", "用户接口", lang) },
-    { label: t("AI Engine", "AI 引擎", lang), sub: t("Strategy + Analysis", "策略 + 分析", lang) },
-    { label: t("Sui Blockchain", "Sui 区块链", lang), sub: t("Smart Contracts", "智能合约", lang) },
-    { label: t("DeFi Protocols", "DeFi 协议", lang), sub: t("Cetus, Turbos, etc.", "Cetus, Turbos 等", lang) },
-  ];
+  const dashQuickActions = [
+    { icon: ArrowLeftRight, title: 'Swap', description: t('Trade tokens', '交易代币') },
+    { icon: Crosshair, title: 'Sniper', description: t('Social trading', '社交交易') },
+    { icon: TrendingUp, title: 'Yield', description: t('Earn returns', '赚取收益') },
+    { icon: Briefcase, title: 'Portfolio', description: t('View holdings', '查看持仓') },
+  ]
+  const dashActivity = [
+    { icon: <LogoIcon letter="S" bg="bg-blue-600" />, title: 'SUI → CETUS Swap', time: '2 hours ago', amount: 42.50 },
+    { icon: <LogoIcon letter="🎯" bg="bg-purple-600" />, title: 'Social Sniper: @SuiWhale_', time: '4 hours ago', amount: 18.20 },
+    { icon: <LogoIcon letter="Y" bg="bg-green-600" />, title: 'Yield Harvest', time: '1 day ago', amount: 3.80 },
+  ]
+  const dashServices = [
+    { icon: Zap, title: t('Auto Strategy', '自动策略'), description: t('AI-managed trading strategies', 'AI 管理交易策略'), isPremium: true },
+    { icon: Target, title: 'Social Sniper', description: t('Twitter monitoring & auto-trade', 'Twitter 监控 + 自动交易'), hasAction: true },
+    { icon: TrendingUp, title: t('Yield Optimizer', '收益优化'), description: t('Cross-protocol yield farming', '跨协议收益耕作') },
+  ]
 
-  const bentoFeatures = [
-    {
-      Icon: Wallet,
-      name: t("Portfolio Tracker", "投资组合追踪", lang),
-      description: t("Real-time portfolio value with cross-protocol aggregation", "跨协议聚合的实时投资组合价值", lang),
-      href: TG_LINK,
-      cta: t("Try it", "试试", lang),
-      className: "lg:row-start-1 lg:row-end-3 lg:col-start-2 lg:col-end-3",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent" />,
-    },
-    {
-      Icon: TrendingUp,
-      name: t("Live PnL", "实时盈亏", lang),
-      description: t("+$12,847 this month from autonomous trades", "本月自主交易盈利 $12,847", lang),
-      href: TG_LINK,
-      cta: t("View trades", "查看交易", lang),
-      className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent" />,
-    },
-    {
-      Icon: Activity,
-      name: t("Agent Status", "代理状态", lang),
-      description: t("Monitoring 47 pools, 12 strategies active", "监控 47 个池，12 个策略活跃中", lang),
-      href: TG_LINK,
-      cta: t("Details", "详情", lang),
-      className: "lg:col-start-1 lg:col-end-2 lg:row-start-2 lg:row-end-3",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent" />,
-    },
-    {
-      Icon: BarChart3,
-      name: t("Market Intel", "市场情报", lang),
-      description: t("AI-powered market analysis and whale tracking", "AI 驱动的市场分析和巨鲸追踪", lang),
-      href: TG_LINK,
-      cta: t("Explore", "探索", lang),
-      className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent" />,
-    },
-    {
-      Icon: Clock,
-      name: t("Trade History", "交易历史", lang),
-      description: t("Full audit trail of every trade with reasoning", "每笔交易的完整审计追踪和推理", lang),
-      href: TG_LINK,
-      cta: t("View all", "查看全部", lang),
-      className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-3",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent" />,
-    },
-  ];
+  const copyLink = () => {
+    navigator.clipboard.writeText('https://t.me/SuiJarvisBot')
+    setCopied(true); setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-200 overflow-x-hidden">
-      {/* ─── Nav ─── */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] backdrop-blur-md bg-[#09090b]/80 border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2 text-white font-bold text-lg">
-            <Zap className="w-5 h-5 text-indigo-400" />
-            JARVIS
-          </a>
-          <div className="flex items-center gap-4">
-            <a href={TG_LINK} target="_blank" rel="noopener" className="text-zinc-400 hover:text-white transition"><MessageCircle className="w-5 h-5" /></a>
-            <a href={GITHUB_LINK} target="_blank" rel="noopener" className="text-zinc-400 hover:text-white transition"><Github className="w-5 h-5" /></a>
-            <button onClick={() => setLang(lang === "en" ? "cn" : "en")} className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-zinc-400 hover:text-white hover:border-white/20 transition">
-              {lang === "en" ? "中文" : "EN"}
+    <div className="min-h-screen bg-[#09090b] text-white">
+      {/* ===== HEADER ===== */}
+      <header className="sticky top-0 z-50 w-full border-b border-neutral-800/50 bg-[#09090b]/80 backdrop-blur-lg">
+        <nav className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4">
+          <a href="#" className="text-lg font-bold tracking-tight">Sui DeFi Jarvis</a>
+          <div className="hidden md:flex items-center gap-6">
+            <a href="#features" className="text-sm text-neutral-400 hover:text-white transition">Features</a>
+            <a href="#sniper" className="text-sm text-neutral-400 hover:text-white transition">Sniper</a>
+            <a href="#architecture" className="text-sm text-neutral-400 hover:text-white transition">Architecture</a>
+            <a href="#dashboard" className="text-sm text-neutral-400 hover:text-white transition">Dashboard</a>
+          </div>
+          <div className="flex items-center gap-2">
+            <button onClick={() => setLang(lang === 'en' ? 'cn' : 'en')}
+              className="text-sm px-3 py-1.5 rounded-md border border-neutral-700 hover:bg-neutral-800 transition">
+              {lang === 'en' ? '🇨🇳 中文' : '🇬🇧 EN'}
             </button>
+            <a href="https://t.me/SuiJarvisBot" target="_blank" rel="noopener"
+              className="hidden md:inline-flex text-sm px-4 py-2 rounded-md bg-white text-black font-medium hover:bg-neutral-200 transition">
+              {t('Launch Bot', '启动 Bot')}
+            </a>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
-      {/* ─── Hero: LampContainer ─── */}
-      <LampContainer>
-        <motion.div
-          initial={{ opacity: 0.5, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
-          className="text-center"
-        >
-          <p className="text-indigo-400 text-sm tracking-[0.3em] uppercase mb-4">
-            {t("AI-Powered DeFi Agent on Sui", "Sui 上的 AI DeFi 代理", lang)}
-          </p>
-          <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-br from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent pb-4">
-            SUI DEFI<br />JARVIS
-          </h1>
-          <p className="text-zinc-400 max-w-xl mx-auto mt-4 text-lg">
-            {t(
-              "The autonomous AI agent that trades, farms, and manages your DeFi portfolio on Sui — all from Telegram.",
-              "自主 AI 代理，在 Sui 上交易、挖矿、管理你的 DeFi 投资组合 — 全在 Telegram 完成。",
-              lang
-            )}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
-            <a href={TG_LINK} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:opacity-90 transition">
-              {t("Try on Telegram", "在 Telegram 试用", lang)} <ArrowRight className="w-4 h-4" />
-            </a>
-            <a href={GITHUB_LINK} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-white/10 text-zinc-300 hover:border-white/20 transition">
-              {t("View Source", "查看源码", lang)} <ExternalLink className="w-4 h-4" />
-            </a>
+      {/* ===== HERO ===== */}
+      <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
+        <div className="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center w-full gap-8 py-20">
+          <div className="flex-1 relative z-10">
+            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+              {t('The Infinite Money Glitch', '无限印钞机')}
+            </motion.h1>
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+              className="mt-2 text-xl md:text-2xl text-neutral-300">
+              {t('Your Autonomous AI DeFi Agent on Sui', 'Sui 链上自主 AI DeFi 代理')}
+            </motion.p>
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+              className="mt-4 text-neutral-400 max-w-lg">
+              {t('AI-powered. Fully autonomous. Zero-cost growth. Jarvis monitors, analyzes, trades, and markets — all on autopilot.',
+                'AI 驱动、全自动、零成本增长。Jarvis 自动监控、分析、交易、营销——全程自动驾驶。')}
+            </motion.p>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+              className="mt-8 flex gap-4">
+              <a href="https://t.me/SuiJarvisBot" target="_blank" rel="noopener">
+                <GlassButton size="default">{t('⚡ Launch Bot', '⚡ 启动 Bot')}</GlassButton>
+              </a>
+              <a href="https://github.com/wrx1234/sui-hackathon" target="_blank" rel="noopener">
+                <GlassButton size="default">{t('View on GitHub', '查看 GitHub')}</GlassButton>
+              </a>
+            </motion.div>
           </div>
-        </motion.div>
-      </LampContainer>
-
-      {/* ─── How to Start: GlowingEffect cards ─── */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-indigo-400 text-sm tracking-[0.3em] text-center mb-2">{t("QUICK START", "快速开始", lang)}</p>
-          <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
-            {t("GET STARTED IN 30 SECONDS", "30 秒快速上手", lang)}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {steps.map((s, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="relative p-8 rounded-2xl border border-white/5 bg-white/[0.02] group"
-              >
-                <GlowingEffect spread={40} glow proximity={64} borderWidth={2} />
-                <span className="text-5xl font-black text-indigo-500/20 group-hover:text-indigo-500/40 transition">{s.num}</span>
-                <h3 className="text-xl font-bold text-white mt-4">{s.title}</h3>
-                <p className="text-zinc-400 mt-2">{s.desc}</p>
-                {i < 2 && <ChevronRight className="hidden md:block absolute -right-5 top-1/2 -translate-y-1/2 w-6 h-6 text-zinc-700" />}
-              </motion.div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <a href={TG_LINK} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:opacity-90 transition">
-              {t("Start Now", "立即开始", lang)} <ArrowRight className="w-4 h-4" />
-            </a>
+          <div className="flex-1 relative h-[400px] md:h-[500px]">
+            {/* Sui logo overlay */}
+            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 z-10 opacity-30 pointer-events-none">
+              <svg width="48" height="48" viewBox="0 0 36 44" fill="none"><path d="M23.5 5.7 16.2.4a2.1 2.1 0 0 0-2.4 0L.4 10a2 2 0 0 0-.4 1.2v21.6c0 .5.2.9.4 1.2l13.4 9.6a2.1 2.1 0 0 0 2.4 0L29.6 34a2 2 0 0 0 .4-1.2V11.2a2 2 0 0 0-.4-1.2L23.5 5.7Z" fill="#4da2ff"/></svg>
+            </div>
+            <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="w-full h-full" />
           </div>
         </div>
       </section>
 
-      {/* ─── Features: Hover blue bar effect ─── */}
-      <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-indigo-400 text-sm tracking-[0.3em] text-center mb-2">{t("FEATURES", "功能特性", lang)}</p>
-          <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
-            {t("WHAT JARVIS DOES FOR YOU", "JARVIS 为你做什么", lang)}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10">
-            {features.map((f, i) => (
-              <Feature key={i} title={f.title} description={f.description} icon={f.icon} index={i} />
-            ))}
-          </div>
+      {/* ===== FEATURES (8-grid) ===== */}
+      <section id="features" className="py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">{t('Core Features', '核心功能')}</h2>
+          <p className="text-center text-neutral-400 mb-10">{t('Everything you need for autonomous DeFi trading', '自主 DeFi 交易所需的一切')}</p>
+          <FeaturesWithHoverEffects features={features8} />
         </div>
       </section>
 
-      {/* ─── Live Dashboard: BentoGrid ─── */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-indigo-400 text-sm tracking-[0.3em] text-center mb-2">{t("DASHBOARD", "仪表盘", lang)}</p>
-          <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
-            {t("LIVE AGENT DASHBOARD", "实时代理仪表盘", lang)}
-          </h2>
-          <BentoGrid className="lg:grid-rows-2 max-w-5xl mx-auto">
-            {bentoFeatures.map((f) => (
-              <BentoCard key={f.name} {...f} />
+      {/* ===== SOCIAL SNIPER (highlight!) ===== */}
+      <section id="sniper" className="py-20 bg-gradient-to-b from-[#09090b] via-indigo-950/10 to-[#09090b]">
+        <FeatureSteps
+          features={sniperSteps}
+          title={t('🎯 Social Sniper — AI-Powered Growth Engine', '🎯 社交狙击 — AI 驱动增长引擎')}
+          autoPlayInterval={4000}
+        />
+        {/* Stats bar */}
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 px-8">
+          {sniperStats.map((s, i) => (
+            <motion.div key={i} className="text-center" initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
+              <p className="text-3xl md:text-4xl font-bold text-indigo-400">{s.value}</p>
+              <p className="text-sm text-neutral-400 mt-1">{s.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ===== ARCHITECTURE (BentoGrid) ===== */}
+      <section id="architecture" className="py-20">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">{t('Tech Stack', '技术架构')}</h2>
+          <p className="text-center text-neutral-400 mb-10">{t('Built on the best of Web3', '构建于 Web3 最佳技术栈')}</p>
+          <BentoGrid className="lg:grid-rows-2">
+            {archCards.map(c => (
+              <BentoCard key={c.name} name={c.name} className={c.className} Icon={c.Icon}
+                description={c.description} href="#" cta={t('Learn more', '了解更多')}
+                background={<div className="absolute inset-0 bg-gradient-to-br from-neutral-900 to-black" />} />
             ))}
           </BentoGrid>
         </div>
       </section>
 
-      {/* ─── Social Sniper: Zero-cost Growth Engine ─── */}
-      <section className="py-24 px-6 bg-[#09090b]">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <p className="text-indigo-400 text-sm tracking-[0.3em] mb-2">{t("GROWTH ENGINE", "增长引擎", lang)}</p>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              🎯 {t("Social Sniper", "社交狙击手", lang)}
-            </h2>
-            <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-4">
-              {t("AI-Powered Growth Engine", "AI 驱动增长引擎", lang)}
-            </h3>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              {t("Zero-cost user acquisition through intelligent social trading", "通过智能社交交易实现零成本用户获取", lang)}
-            </p>
-          </motion.div>
+      {/* ===== STABLELAYER ===== */}
+      <section className="py-10">
+        <CategoryList
+          title={t('Integrated with', '深度集成')}
+          subtitle="StableLayer"
+          categories={stableCategories}
+          headerIcon={<Zap className="w-8 h-8" />}
+        />
+      </section>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Flow Process */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <h4 className="text-2xl font-bold text-white mb-8">
-                {t("4-Step Viral Loop", "4 步病毒循环", lang)}
-              </h4>
-              
-              {[
-                { 
-                  icon: "🔍", 
-                  title: t("Monitor", "监控", lang), 
-                  desc: t("Scan Twitter/X for Sui token discussions", "扫描推特上的 Sui 代币讨论"), 
-                },
-                { 
-                  icon: "🧠", 
-                  title: t("Analyze", "分析", lang), 
-                  desc: t("AI sentiment analysis (Bullish/Bearish)", "AI 情感分析（看涨/看跌）", lang), 
-                },
-                { 
-                  icon: "⚡", 
-                  title: t("Execute", "执行", lang), 
-                  desc: t("Auto-trade based on signal confidence", "基于信号置信度自动交易", lang), 
-                },
-                { 
-                  icon: "💬", 
-                  title: t("Engage", "互动", lang), 
-                  desc: t("Reply to original tweet with results + invite link", "回复原推文并附上结果和邀请链接", lang), 
-                }
-              ].map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + i * 0.1, duration: 0.4 }}
-                  viewport={{ once: true }}
-                  className="relative"
-                >
-                  <div className="flex items-start gap-4 p-6 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm relative group">
-                    <GlowingEffect spread={30} glow proximity={48} borderWidth={1} />
-                    <div className="text-3xl">{step.icon}</div>
-                    <div>
-                      <h5 className="text-xl font-bold text-white mb-2">{step.title}</h5>
-                      <p className="text-zinc-400">{step.desc}</p>
-                    </div>
-                  </div>
-                  {i < 3 && (
-                    <div className="absolute left-8 -bottom-3 w-0.5 h-6 bg-gradient-to-b from-indigo-500 to-transparent" />
-                  )}
-                </motion.div>
-              ))}
-            </motion.div>
+      {/* ===== SECURITY ===== */}
+      <Features2
+        title={t('Security & Transparency', '安全与透明')}
+        subtitle={t('Trust through technology', '以技术构建信任')}
+        features={securityFeatures}
+      />
 
-            {/* Recent Snipes */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <h4 className="text-2xl font-bold text-white mb-8">
-                {t("Recent Snipes", "最近狙击", lang)}
-              </h4>
-              
-              {[
-                { 
-                  user: "@SuiWhale_", 
-                  sentiment: t("Bullish 92%", "看涨 92%", lang), 
-                  action: t("BUY 500 SUI", "买入 500 SUI", lang), 
-                  result: "+2.1%",
-                  color: "emerald"
-                },
-                { 
-                  user: "@CryptoAnalyst99", 
-                  sentiment: t("Bearish 85%", "看跌 85%", lang), 
-                  action: t("SELL 2000 CETUS", "卖出 2000 CETUS", lang), 
-                  result: "+1.4%",
-                  color: "rose"
-                }
-              ].map((snipe, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + i * 0.1, duration: 0.4 }}
-                  viewport={{ once: true }}
-                  className="relative p-6 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm group"
-                >
-                  <GlowingEffect spread={25} glow proximity={40} borderWidth={1} />
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-                    <span className="text-white font-semibold">{snipe.user}</span>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-zinc-400 text-sm">{t("Sentiment", "情感", lang)}</span>
-                      <span className={`text-sm font-medium ${snipe.color === 'emerald' ? 'text-emerald-400' : 'text-rose-400'}`}>
-                        {snipe.sentiment}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-zinc-400 text-sm">{t("Action", "操作", lang)}</span>
-                      <span className="text-sm font-medium text-white">{snipe.action}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-zinc-400 text-sm">{t("Result", "结果", lang)}</span>
-                      <span className="text-sm font-bold text-emerald-400">{snipe.result}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+      {/* ===== DASHBOARD ===== */}
+      <section id="dashboard" className="py-20">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">{t('Live Dashboard', '实时仪表盘')}</h2>
+          <p className="text-center text-neutral-400 mb-10">{t('Your DeFi command center', '你的 DeFi 指挥中心')}</p>
+          <FinancialDashboard quickActions={dashQuickActions} recentActivity={dashActivity} financialServices={dashServices} />
+        </div>
+      </section>
 
-              <div className="relative p-6 rounded-xl border border-indigo-500/20 bg-indigo-500/5 backdrop-blur-sm">
-                <GlowingEffect spread={30} glow proximity={48} borderWidth={1} />
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-white">12,847</p>
-                    <p className="text-xs text-zinc-400">{t("Tweets Scanned", "扫描推文", lang)}</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-white">342</p>
-                    <p className="text-xs text-zinc-400">{t("Signals Found", "发现信号", lang)}</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-emerald-400">$0</p>
-                    <p className="text-xs text-zinc-400">{t("Marketing Cost", "营销成本", lang)}</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-white">245K</p>
-                    <p className="text-xs text-zinc-400">{t("Impressions", "曝光量", lang)}</p>
-                  </div>
-                </div>
+      {/* ===== CTA FOOTER ===== */}
+      <section className="py-20">
+        <div className="max-w-md mx-auto px-4">
+          <div className="relative">
+            <div className="flex items-center justify-between px-4 py-2 bg-neutral-800/50 border border-neutral-700 rounded-t-lg">
+              <div className="flex space-x-2">
+                <div className="h-3 w-3 rounded-full bg-red-500" />
+                <div className="h-3 w-3 rounded-full bg-yellow-500" />
+                <div className="h-3 w-3 rounded-full bg-green-500" />
               </div>
-            </motion.div>
-          </div>
-
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
-            <a href={TG_LINK} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg hover:opacity-90 transition shadow-xl">
-              <Target className="w-5 h-5" />
-              {t("Enable Social Sniper", "启用社交狙击手", lang)}
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ─── Proof: TextShimmer ─── */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <p className="text-indigo-400 text-sm tracking-[0.3em] mb-2">{t("PROOF", "实力证明", lang)}</p>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            {t("WE DON'T DO WHITEPAPERS.", "我们不写白皮书。", lang)}
-          </h2>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-12">
-            {t("WE DO PROFITS.", "我们只做利润。", lang)}
-          </h2>
-          <div className="mb-12">
-            <TextShimmer as="p" className="text-4xl md:text-6xl font-black [--base-color:theme(colors.white)] [--base-gradient-color:theme(colors.indigo.400)]" duration={3}>
-              {t("$1,000 → $3,500", "$1,000 → $3,500", lang)}
-            </TextShimmer>
-            <p className="text-zinc-500 mt-2">{t("in 30 days of autonomous trading", "30 天自主交易", lang)}</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((s, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.1, duration: 0.4 }}
-                viewport={{ once: true }}
-                className="p-6"
-              >
-                <p className="text-3xl md:text-4xl font-black text-white">{s.value}</p>
-                <p className="text-zinc-500 mt-1 text-sm">{s.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Architecture: AuroraBackground ─── */}
-      <section className="relative py-24 px-6">
-        <AuroraBackground className="min-h-[500px] rounded-2xl mx-auto max-w-6xl">
-          <div className="relative z-10 py-24 px-6">
-            <p className="text-indigo-300 text-sm tracking-[0.3em] text-center mb-2">{t("ARCHITECTURE", "架构", lang)}</p>
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
-              {t("HOW IT WORKS", "工作原理", lang)}
-            </h2>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-              {archSteps.map((step, i) => (
-                <div key={i} className="flex items-center gap-4">
-                  <div className="p-6 rounded-xl border border-white/10 bg-black/30 backdrop-blur-sm text-center min-w-[180px]">
-                    <p className="text-white font-bold">{step.label}</p>
-                    <p className="text-zinc-400 text-sm mt-1">{step.sub}</p>
-                  </div>
-                  {i < archSteps.length - 1 && <ChevronRight className="hidden md:block w-5 h-5 text-zinc-400" />}
-                </div>
-              ))}
+              <button onClick={copyLink} className="text-neutral-400 hover:text-white transition p-1">
+                {copied ? <CheckIcon className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
+              </button>
             </div>
-            <div className="mt-8 text-center">
-              <p className="text-zinc-400 text-sm font-mono break-all">{t("Contract: ", "合约: ", lang)}{CONTRACT}</p>
-            </div>
+            <pre className="p-4 rounded-b-lg bg-neutral-900 border-x border-b border-neutral-700 overflow-x-auto font-mono">
+              <code className="text-sm text-indigo-400">https://t.me/SuiJarvisBot</code>
+            </pre>
           </div>
-        </AuroraBackground>
-      </section>
-
-      {/* ─── Sui Stack ─── */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <p className="text-indigo-400 text-sm tracking-[0.3em] mb-2">{t("ECOSYSTEM", "生态系统", lang)}</p>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-16">
-            {t("BUILT ON THE SUI STACK", "基于 SUI 技术栈构建", lang)}
-          </h2>
-          <div className="flex flex-wrap justify-center gap-6">
-            {partners.map((p) => (
-              <div key={p} className="relative px-8 py-4 rounded-xl border border-white/5 bg-white/[0.02] text-zinc-400 font-medium hover:text-white hover:border-indigo-500/30 transition">
-                {p}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Bottom CTA: BackgroundGradientAnimation ─── */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <BackgroundGradientAnimation containerClassName="rounded-2xl" className="flex flex-col items-center justify-center h-full absolute inset-0 p-8">
-            <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-4 drop-shadow-lg">
-              {t("STOP TRADING MANUALLY.", "停止手动交易。", lang)}
-            </h2>
-            <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-8 drop-shadow-lg">
-              {t("LET JARVIS COOK.", "让 JARVIS 来。", lang)}
-            </h2>
-            <a href={TG_LINK} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition shadow-2xl">
-              {t("Launch Jarvis", "启动 Jarvis", lang)} <ArrowRight className="w-5 h-5" />
+          <div className="flex justify-center gap-4 mt-8">
+            <a href="https://t.me/SuiJarvisBot" target="_blank" rel="noopener" className="px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-neutral-200 transition">
+              {t('Launch Bot', '启动 Bot')}
             </a>
-          </BackgroundGradientAnimation>
+            <a href="https://github.com/wrx1234/sui-hackathon" target="_blank" rel="noopener" className="px-6 py-3 rounded-full border border-neutral-700 hover:bg-neutral-800 transition">
+              GitHub
+            </a>
+          </div>
+          <p className="text-center text-neutral-600 text-sm mt-12">
+            Built by AI Agents, supervised by humans. © 2026 Sui DeFi Jarvis
+          </p>
         </div>
       </section>
-
-      {/* ─── Footer ─── */}
-      <footer className="border-t border-white/5 py-12 px-6">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-zinc-500">
-            <Zap className="w-4 h-4" /> JARVIS © 2025
-          </div>
-          <div className="flex items-center gap-6 text-zinc-500 text-sm">
-            <a href={TG_LINK} target="_blank" rel="noopener" className="hover:text-white transition">Telegram</a>
-            <a href={GITHUB_LINK} target="_blank" rel="noopener" className="hover:text-white transition">GitHub</a>
-          </div>
-        </div>
-      </footer>
     </div>
-  );
+  )
 }
+
+export default App
