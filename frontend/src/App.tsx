@@ -1,10 +1,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Brain, Eye, Coins, Shield, Share2, Globe, ExternalLink, Github, MessageCircle, ArrowRight, Zap, ChevronRight } from "lucide-react";
+import {
+  Brain, Eye, Coins, Shield, Share2, Globe, ExternalLink, Github,
+  MessageCircle, ArrowRight, Zap, ChevronRight, Activity, BarChart3,
+  Wallet, TrendingUp, Clock, Target
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LampContainer } from "@/components/LampContainer";
 import { TextShimmer } from "@/components/TextShimmer";
 import { BackgroundGradientAnimation } from "@/components/BackgroundGradientAnimation";
+import { AuroraBackground } from "@/components/AuroraBackground";
+import { BentoCard, BentoGrid } from "@/components/BentoGrid";
+import { GlowingEffect } from "@/components/GlowingEffect";
 
 const TG_LINK = "https://t.me/SuiJarvisBot";
 const GITHUB_LINK = "https://github.com/wrx1234/sui-hackathon";
@@ -12,7 +19,7 @@ const CONTRACT = "0x737a73b3a146d45694c341a22b62607e5a6e6b6496b91156217a7d2c91f7
 
 const t = (en: string, cn: string, lang: string) => (lang === "en" ? en : cn);
 
-// ─── Feature hover effect ───
+// ─── Feature hover effect (from 21st.dev feature-hover pattern) ───
 const Feature = ({ title, description, icon, index }: { title: string; description: string; icon: React.ReactNode; index: number }) => (
   <div
     className={cn(
@@ -36,7 +43,7 @@ const Feature = ({ title, description, icon, index }: { title: string; descripti
 );
 
 export default function App() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState<"en" | "cn">("en");
 
   const features = [
     { icon: <Brain className="w-6 h-6" />, title: t("AI Strategy Engine", "AI 策略引擎", lang), description: t("Autonomous trading decisions powered by multi-model AI analysis of on-chain data, social signals, and market patterns.", "多模型 AI 分析链上数据、社交信号和市场模式，自主交易决策。", lang) },
@@ -51,13 +58,6 @@ export default function App() {
     { num: "01", title: t("Open Telegram", "打开 Telegram", lang), desc: t("Search @SuiJarvisBot and hit Start", "搜索 @SuiJarvisBot 点击 Start", lang) },
     { num: "02", title: t("Connect Wallet", "连接钱包", lang), desc: t("Create or import your Sui wallet securely", "安全创建或导入 Sui 钱包", lang) },
     { num: "03", title: t("Let Jarvis Cook", "让 Jarvis 开干", lang), desc: t("Set your strategy and watch profits roll in", "设定策略，坐等收益", lang) },
-  ];
-
-  const trades = [
-    { pair: "SUI/USDC", type: t("Buy", "买入", lang), amount: "2,500 SUI", pnl: "+12.4%", time: "2m ago" },
-    { pair: "CETUS/SUI", type: t("Sell", "卖出", lang), amount: "15,000 CETUS", pnl: "+8.7%", time: "15m ago" },
-    { pair: "TURBOS/SUI", type: t("Buy", "买入", lang), amount: "50,000 TURBOS", pnl: "+23.1%", time: "1h ago" },
-    { pair: "SUI/USDC", type: t("Sell", "卖出", lang), amount: "1,200 SUI", pnl: "+5.2%", time: "3h ago" },
   ];
 
   const stats = [
@@ -76,9 +76,57 @@ export default function App() {
     { label: t("DeFi Protocols", "DeFi 协议", lang), sub: t("Cetus, Turbos, etc.", "Cetus, Turbos 等", lang) },
   ];
 
+  const bentoFeatures = [
+    {
+      Icon: Wallet,
+      name: t("Portfolio Tracker", "投资组合追踪", lang),
+      description: t("Real-time portfolio value with cross-protocol aggregation", "跨协议聚合的实时投资组合价值", lang),
+      href: TG_LINK,
+      cta: t("Try it", "试试", lang),
+      className: "lg:row-start-1 lg:row-end-3 lg:col-start-2 lg:col-end-3",
+      background: <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent" />,
+    },
+    {
+      Icon: TrendingUp,
+      name: t("Live PnL", "实时盈亏", lang),
+      description: t("+$12,847 this month from autonomous trades", "本月自主交易盈利 $12,847", lang),
+      href: TG_LINK,
+      cta: t("View trades", "查看交易", lang),
+      className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2",
+      background: <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent" />,
+    },
+    {
+      Icon: Activity,
+      name: t("Agent Status", "代理状态", lang),
+      description: t("Monitoring 47 pools, 12 strategies active", "监控 47 个池，12 个策略活跃中", lang),
+      href: TG_LINK,
+      cta: t("Details", "详情", lang),
+      className: "lg:col-start-1 lg:col-end-2 lg:row-start-2 lg:row-end-3",
+      background: <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent" />,
+    },
+    {
+      Icon: BarChart3,
+      name: t("Market Intel", "市场情报", lang),
+      description: t("AI-powered market analysis and whale tracking", "AI 驱动的市场分析和巨鲸追踪", lang),
+      href: TG_LINK,
+      cta: t("Explore", "探索", lang),
+      className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
+      background: <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent" />,
+    },
+    {
+      Icon: Clock,
+      name: t("Trade History", "交易历史", lang),
+      description: t("Full audit trail of every trade with reasoning", "每笔交易的完整审计追踪和推理", lang),
+      href: TG_LINK,
+      cta: t("View all", "查看全部", lang),
+      className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-3",
+      background: <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent" />,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#09090b] text-zinc-200 overflow-x-hidden">
-      {/* Nav */}
+      {/* ─── Nav ─── */}
       <nav className="fixed top-0 left-0 right-0 z-[100] backdrop-blur-md bg-[#09090b]/80 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2 text-white font-bold text-lg">
@@ -95,7 +143,7 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Hero - Lamp */}
+      {/* ─── Hero: LampContainer ─── */}
       <LampContainer>
         <motion.div
           initial={{ opacity: 0.5, y: 100 }}
@@ -127,7 +175,7 @@ export default function App() {
         </motion.div>
       </LampContainer>
 
-      {/* How to Start */}
+      {/* ─── How to Start: GlowingEffect cards ─── */}
       <section className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <p className="text-indigo-400 text-sm tracking-[0.3em] text-center mb-2">{t("QUICK START", "快速开始", lang)}</p>
@@ -142,8 +190,9 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15, duration: 0.5 }}
                 viewport={{ once: true }}
-                className="relative p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-indigo-500/30 transition group"
+                className="relative p-8 rounded-2xl border border-white/5 bg-white/[0.02] group"
               >
+                <GlowingEffect spread={40} glow proximity={64} borderWidth={2} />
                 <span className="text-5xl font-black text-indigo-500/20 group-hover:text-indigo-500/40 transition">{s.num}</span>
                 <h3 className="text-xl font-bold text-white mt-4">{s.title}</h3>
                 <p className="text-zinc-400 mt-2">{s.desc}</p>
@@ -159,7 +208,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* ─── Features: Hover blue bar effect ─── */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="text-indigo-400 text-sm tracking-[0.3em] text-center mb-2">{t("FEATURES", "功能特性", lang)}</p>
@@ -174,46 +223,22 @@ export default function App() {
         </div>
       </section>
 
-      {/* Live Dashboard */}
+      {/* ─── Live Dashboard: BentoGrid ─── */}
       <section className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <p className="text-indigo-400 text-sm tracking-[0.3em] text-center mb-2">{t("DASHBOARD", "仪表盘", lang)}</p>
           <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
             {t("LIVE AGENT DASHBOARD", "实时代理仪表盘", lang)}
           </h2>
-          <div className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden">
-            <div className="grid grid-cols-3 border-b border-white/5">
-              <div className="p-6 text-center border-r border-white/5">
-                <p className="text-zinc-500 text-sm">{t("Wallet", "钱包", lang)}</p>
-                <p className="text-white font-mono mt-1 text-sm">0x7a3f...e65d</p>
-              </div>
-              <div className="p-6 text-center border-r border-white/5">
-                <p className="text-zinc-500 text-sm">{t("Total Value", "总资产", lang)}</p>
-                <p className="text-white font-bold text-xl mt-1">$34,521</p>
-              </div>
-              <div className="p-6 text-center">
-                <p className="text-zinc-500 text-sm">{t("30d PnL", "30天盈亏", lang)}</p>
-                <p className="text-emerald-400 font-bold text-xl mt-1">+$12,847</p>
-              </div>
-            </div>
-            <div className="divide-y divide-white/5">
-              {trades.map((tr, i) => (
-                <div key={i} className="flex items-center justify-between px-6 py-4 hover:bg-white/[0.02] transition">
-                  <div className="flex items-center gap-4">
-                    <span className={cn("text-xs font-bold px-2 py-0.5 rounded", tr.type === "Buy" || tr.type === "买入" ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400")}>{tr.type}</span>
-                    <span className="text-white font-medium">{tr.pair}</span>
-                  </div>
-                  <span className="text-zinc-400 text-sm">{tr.amount}</span>
-                  <span className="text-emerald-400 font-mono text-sm">{tr.pnl}</span>
-                  <span className="text-zinc-600 text-sm">{tr.time}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <BentoGrid className="lg:grid-rows-2 max-w-5xl mx-auto">
+            {bentoFeatures.map((f) => (
+              <BentoCard key={f.name} {...f} />
+            ))}
+          </BentoGrid>
         </div>
       </section>
 
-      {/* Proof */}
+      {/* ─── Proof: TextShimmer ─── */}
       <section className="py-24 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <p className="text-indigo-400 text-sm tracking-[0.3em] mb-2">{t("PROOF", "实力证明", lang)}</p>
@@ -224,7 +249,7 @@ export default function App() {
             {t("WE DO PROFITS.", "我们只做利润。", lang)}
           </h2>
           <div className="mb-12">
-            <TextShimmer as="p" className="text-4xl md:text-6xl font-black" duration={3}>
+            <TextShimmer as="p" className="text-4xl md:text-6xl font-black [--base-color:theme(colors.white)] [--base-gradient-color:theme(colors.indigo.400)]" duration={3}>
               {t("$1,000 → $3,500", "$1,000 → $3,500", lang)}
             </TextShimmer>
             <p className="text-zinc-500 mt-2">{t("in 30 days of autonomous trading", "30 天自主交易", lang)}</p>
@@ -247,31 +272,33 @@ export default function App() {
         </div>
       </section>
 
-      {/* Architecture */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-indigo-400 text-sm tracking-[0.3em] text-center mb-2">{t("ARCHITECTURE", "架构", lang)}</p>
-          <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
-            {t("HOW IT WORKS", "工作原理", lang)}
-          </h2>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            {archSteps.map((step, i) => (
-              <div key={i} className="flex items-center gap-4">
-                <div className="p-6 rounded-xl border border-white/5 bg-white/[0.02] text-center min-w-[180px]">
-                  <p className="text-white font-bold">{step.label}</p>
-                  <p className="text-zinc-500 text-sm mt-1">{step.sub}</p>
+      {/* ─── Architecture: AuroraBackground ─── */}
+      <section className="relative py-24 px-6">
+        <AuroraBackground className="min-h-[500px] rounded-2xl mx-auto max-w-6xl">
+          <div className="relative z-10 py-24 px-6">
+            <p className="text-indigo-300 text-sm tracking-[0.3em] text-center mb-2">{t("ARCHITECTURE", "架构", lang)}</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
+              {t("HOW IT WORKS", "工作原理", lang)}
+            </h2>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+              {archSteps.map((step, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <div className="p-6 rounded-xl border border-white/10 bg-black/30 backdrop-blur-sm text-center min-w-[180px]">
+                    <p className="text-white font-bold">{step.label}</p>
+                    <p className="text-zinc-400 text-sm mt-1">{step.sub}</p>
+                  </div>
+                  {i < archSteps.length - 1 && <ChevronRight className="hidden md:block w-5 h-5 text-zinc-400" />}
                 </div>
-                {i < archSteps.length - 1 && <ChevronRight className="hidden md:block w-5 h-5 text-zinc-700" />}
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="mt-8 text-center">
+              <p className="text-zinc-400 text-sm font-mono break-all">{t("Contract: ", "合约: ", lang)}{CONTRACT}</p>
+            </div>
           </div>
-          <div className="mt-8 text-center">
-            <p className="text-zinc-600 text-sm font-mono break-all">{t("Contract: ", "合约: ", lang)}{CONTRACT}</p>
-          </div>
-        </div>
+        </AuroraBackground>
       </section>
 
-      {/* Sui Stack */}
+      {/* ─── Sui Stack ─── */}
       <section className="py-24 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <p className="text-indigo-400 text-sm tracking-[0.3em] mb-2">{t("ECOSYSTEM", "生态系统", lang)}</p>
@@ -280,7 +307,7 @@ export default function App() {
           </h2>
           <div className="flex flex-wrap justify-center gap-6">
             {partners.map((p) => (
-              <div key={p} className="px-8 py-4 rounded-xl border border-white/5 bg-white/[0.02] text-zinc-400 font-medium hover:text-white hover:border-indigo-500/30 transition">
+              <div key={p} className="relative px-8 py-4 rounded-xl border border-white/5 bg-white/[0.02] text-zinc-400 font-medium hover:text-white hover:border-indigo-500/30 transition">
                 {p}
               </div>
             ))}
@@ -288,7 +315,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
+      {/* ─── Bottom CTA: BackgroundGradientAnimation ─── */}
       <section className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <BackgroundGradientAnimation containerClassName="rounded-2xl" className="flex flex-col items-center justify-center h-full absolute inset-0 p-8">
@@ -305,7 +332,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ─── Footer ─── */}
       <footer className="border-t border-white/5 py-12 px-6">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-zinc-500">
