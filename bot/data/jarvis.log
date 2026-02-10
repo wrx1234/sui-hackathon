@@ -8298,3 +8298,19 @@ telegram.error.NetworkError: httpx.RemoteProtocolError: Server disconnected with
 2026-02-10 23:47:05,147 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
 2026-02-10 23:47:15,549 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
 2026-02-10 23:47:25,899 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:47:36,224 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:47:46,632 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:47:56,995 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:48:07,348 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:48:17,703 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:48:28,142 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:48:38,487 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:48:48,876 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:48:57,245 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-10 23:48:57,246 - INFO - Application is stopping. This might take a moment.
+2026-02-10 23:48:57,246 - INFO - Application.stop() complete
+2026-02-10 23:48:58,154 - INFO - 🤖 Sui DeFi Jarvis v2.0 starting...
+2026-02-10 23:48:58,232 - INFO - 🤖 @SuiJarvisBot v2.0 ACTIVE — The Infinite Money Glitch
+2026-02-10 23:48:59,364 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getMe "HTTP/1.1 200 OK"
+2026-02-10 23:48:59,692 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/deleteWebhook "HTTP/1.1 200 OK"
+2026-02-10 23:48:59,693 - INFO - Application started

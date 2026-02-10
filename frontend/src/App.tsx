@@ -1,381 +1,429 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
+import {
+  Brain, Eye, Coins, Shield, Share2, Globe,
+  ArrowRight, ArrowDown, ExternalLink, ChevronDown,
+} from 'lucide-react'
 
-// ==================== 双语文案 ====================
-const TEXTS = {
-  en: {
-    heroTitle: "SUI DEFI JARVIS",
-    heroSub: "YOUR AI ARMY ON SUI. TRADES. HUNTS. SPREADS. 24/7.",
-    heroDesc: "While you sleep, Jarvis hunts alpha across 30+ DEXs, snipes new pools, tracks whales, generates viral tweets, and grows your army — all on-chain, all transparent, all autonomous.",
-    ctaTelegram: "💬 Try on Telegram",
-    ctaGithub: "📂 View Source",
-    ctaBottom: "STOP TRADING MANUALLY. LET JARVIS COOK. 🔥",
-
-    featTitle: "WHAT JARVIS DOES FOR YOU",
-    feat1Title: "SMARTER THAN YOUR FUND MANAGER",
-    feat1Desc: "3 AI strategies running simultaneously — Trend Following, Mean Reversion, DEX Arbitrage. Real-time signals from EMA/RSI/MACD/Bollinger Bands. Not guessing. Computing.",
-    feat2Title: "SEE WHAT WHALES SEE — BEFORE THEY MOVE",
-    feat2Desc: "Real-time whale tracking, new pool sniping with APR ranking, token safety scanner with audit scores. Your unfair information advantage.",
-    feat3Title: "MINT YOUR OWN STABLECOIN. YES, REALLY.",
-    feat3Desc: "JarvisUSD via StableLayer. Deposit USDC → auto-compound 4.2% APY. Your money makes money makes money. DeFi inception.",
-    feat4Title: "EVERY TRADE. ON-CHAIN. FOREVER.",
-    feat4Desc: "Walrus decentralized logs + Move smart contract vault with VaultCap permissions. Not \"trust me bro\" — verify every trade yourself.",
-    feat5Title: "YOUR AI GOES VIRAL — SO YOU DON'T HAVE TO",
-    feat5Desc: "One-click AI-generated tweets for Crypto Twitter. Referral system with leaderboard. Social Sniper: auto-engage KOLs, broadcast alpha. Your agent builds your audience while you trade.",
-    feat6Title: "SPEAKS YOUR LANGUAGE. LITERALLY.",
-    feat6Desc: "Full bilingual CN/EN with one tap. Natural language commands — just type what you want. Send a contract address, get instant safety report with audit score.",
-
-    dashTitle: "LIVE AGENT DASHBOARD",
-    dashWallet: "Agent Wallet",
-    dashTotal: "Total Value",
-    dashPnl: "Today's P&L",
-    dashTrades: "Recent Trades",
-
-    proofTitle: "WE DON'T DO WHITEPAPERS. WE DO PROFITS.",
-    proofStat: "$1,000 → $3,500 in 6 days. +250%.",
-    proofDesc: "Our Polymarket bot. Running live. Right now. This is not a concept. Not a whitepaper. Not a pitch deck. It's real money, real trades, real profits.",
-    proofCta: "We built an AI that prints money. Then we brought it to Sui.",
-
-    archTitle: "HOW IT WORKS",
-    archUser: "You",
-    archBot: "TG Bot",
-    archAgent: "AI Agent",
-    archChain: "Sui Chain",
-    archOc: "OpenClaw",
-    archStrategy: "Strategy Engine",
-    archCetus: "Cetus 30+ DEX",
-    archWalrus: "Walrus Logs",
-
-    stackTitle: "BUILT ON THE SUI STACK",
-    footerBuilt: "Built with 🤖 by AI agents, supervised by humans",
-    footerHack: "Mission OpenClaw × Vibe Hackathon 2026",
-    langSwitch: "🇨🇳 中文",
-  },
-  cn: {
-    heroTitle: "SUI DEFI JARVIS",
-    heroSub: "你的 Sui 链上 AI 军团。交易。猎杀。裂变。全年无休。",
-    heroDesc: "你睡觉时，Jarvis 横扫 30+ DEX 猎取 Alpha、狙击新池、追踪鲸鱼、自动生成病毒推文、裂变扩军——全链上、全透明、全自主。",
-    ctaTelegram: "💬 Telegram 体验",
-    ctaGithub: "📂 查看源码",
-    ctaBottom: "别再手动交易了。让 Jarvis 来。🔥",
-
-    featTitle: "JARVIS 为你做什么",
-    feat1Title: "比你的基金经理更聪明",
-    feat1Desc: "三大 AI 策略同时运行——趋势跟踪、均值回归、DEX 套利。EMA/RSI/MACD/布林带实时信号。不是猜，是算。",
-    feat2Title: "比鲸鱼早一步看到机会",
-    feat2Desc: "实时鲸鱼追踪、新池狙击 + APR 排名、Token 安全扫描 + 审计评分。你的不对称信息优势。",
-    feat3Title: "铸造你自己的稳定币。没开玩笑。",
-    feat3Desc: "通过 StableLayer 铸造 JarvisUSD。存入 USDC → 自动复利 4.2% APY。钱生钱生钱。DeFi 套娃。",
-    feat4Title: "每笔交易。链上永存。",
-    feat4Desc: "Walrus 去中心化日志 + Move 智能合约金库 + VaultCap 权限控制。不是「信我」——你自己验证。",
-    feat5Title: "AI 帮你病毒传播——你躺着就行",
-    feat5Desc: "一键生成 CT 推文、邀请裂变排行榜、Social Sniper 自动互动 KOL、广播 Alpha。你的 AI 帮你涨粉，你只管赚钱。",
-    feat6Title: "说你的语言。字面意义上的。",
-    feat6Desc: "中英一键切换。自然语言操作——想做什么直接说。发合约地址秒出安全报告 + 审计评分。",
-
-    dashTitle: "实时 Agent 仪表盘",
-    dashWallet: "Agent 钱包",
-    dashTotal: "总资产",
-    dashPnl: "今日盈亏",
-    dashTrades: "最近交易",
-
-    proofTitle: "我们不写白皮书。我们赚钱。",
-    proofStat: "6 天 $1,000 → $3,500。+250%。",
-    proofDesc: "我们的 Polymarket 机器人。正在实盘运行。不是概念，不是白皮书，不是 PPT。真金白银，真实交易，真实利润。",
-    proofCta: "我们造了一个印钞机 AI。然后把它带到了 Sui。",
-
-    archTitle: "工作原理",
-    archUser: "用户",
-    archBot: "TG Bot",
-    archAgent: "AI Agent",
-    archChain: "Sui 链",
-    archOc: "OpenClaw",
-    archStrategy: "策略引擎",
-    archCetus: "Cetus 30+ DEX",
-    archWalrus: "Walrus 日志",
-
-    stackTitle: "构建于 SUI 技术栈",
-    footerBuilt: "由 🤖 AI 代理构建，人类监督",
-    footerHack: "Mission OpenClaw × Vibe Hackathon 2026",
-    langSwitch: "🇬🇧 English",
-  }
-}
-
+// ─── i18n ────────────────────────────────────────────────
 type Lang = 'en' | 'cn'
 
-// ==================== Mock Data ====================
-const TRADES = [
-  { time: "23:15", op: "Swap", detail: "500 SUI → 1,910 USDC", status: "✅", pnl: "+$38" },
-  { time: "22:48", op: "Buy", detail: "2,000 CETUS @ $0.089", status: "✅", pnl: "+$12" },
-  { time: "22:12", op: "Arbitrage", detail: "SUI/USDC ×3 DEX", status: "✅", pnl: "+$67" },
-  { time: "21:35", op: "Swap", detail: "1,000 USDC → 262 SUI", status: "✅", pnl: "+$5" },
-  { time: "20:58", op: "Limit Sell", detail: "5,000 NAVX @ $0.25", status: "✅", pnl: "+$91" },
+const t = (en: string, cn: string, lang: Lang) => (lang === 'en' ? en : cn)
+
+// ─── Animation variants ──────────────────────────────────
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+}
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+}
+
+// ─── Reusable components ─────────────────────────────────
+function GradientText({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <span className={`bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent ${className}`}>
+      {children}
+    </span>
+  )
+}
+
+function GlassCard({ children, className = '', hover = false }: { children: React.ReactNode; className?: string; hover?: boolean }) {
+  return (
+    <div className={`rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md ${hover ? 'transition-all duration-300 hover:border-white/20 hover:-translate-y-1' : ''} ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+function SectionTitle({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <motion.h2
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      className={`text-3xl md:text-5xl font-black tracking-tight leading-tight text-center mb-4 ${className}`}
+    >
+      {children}
+    </motion.h2>
+  )
+}
+
+// ─── Data ────────────────────────────────────────────────
+const TG = 'https://t.me/SuiJarvisBot'
+const GH = 'https://github.com/wrx1234/sui-hackathon'
+const CONTRACT = '0x737a73b3a146d45694c341a22b62607e5a6e6b6496b91156217a7d2c91f7e65d'
+
+const trades = [
+  { time: '14:32', pair: 'SUI/USDC', side: 'BUY', amount: '$2,400', pnl: '+$87' },
+  { time: '13:15', pair: 'CETUS/SUI', side: 'SELL', amount: '$1,200', pnl: '+$42' },
+  { time: '12:01', pair: 'SUI/USDC', side: 'BUY', amount: '$3,100', pnl: '+$156' },
+  { time: '10:47', pair: 'DEEP/SUI', side: 'BUY', amount: '$800', pnl: '-$23' },
+  { time: '09:30', pair: 'SUI/USDC', side: 'SELL', amount: '$5,000', pnl: '+$312' },
 ]
 
-const STACK = [
-  { icon: "🌊", name: "Sui", desc: "Layer 1 Blockchain" },
-  { icon: "🐋", name: "Cetus", desc: "DEX Aggregator" },
-  { icon: "🐘", name: "Walrus", desc: "Decentralized Storage" },
-  { icon: "🔐", name: "Seal", desc: "Key Encryption" },
-  { icon: "💎", name: "StableLayer", desc: "Stablecoin-as-a-Service" },
-  { icon: "🦞", name: "OpenClaw", desc: "AI Agent Runtime" },
-  { icon: "📱", name: "Moltbook", desc: "Agent Social Network" },
-]
+const archRow1 = ['You', 'TG Bot', 'AI Agent', 'Sui Chain']
+const archRow2 = ['OpenClaw', 'Strategy', 'Cetus', 'Walrus']
+const partners = ['Sui', 'Cetus', 'Walrus', 'Seal', 'StableLayer', 'OpenClaw', 'Moltbook']
 
-const FEATURES = [
-  { icon: "🧠", key: "feat1" },
-  { icon: "🐋", key: "feat2" },
-  { icon: "💎", key: "feat3" },
-  { icon: "🐘", key: "feat4" },
-  { icon: "📣", key: "feat5" },
-  { icon: "🌐", key: "feat6" },
-]
-
-// ==================== Components ====================
-function App() {
+// ─── App ─────────────────────────────────────────────────
+export default function App() {
   const [lang, setLang] = useState<Lang>('en')
-  const t = TEXTS[lang]
 
   return (
-    <div className="relative min-h-screen scroll-smooth">
-      {/* Background effects */}
-      <div className="grid-bg" />
-      <div className="glow-orb glow-orb-1" />
-      <div className="glow-orb glow-orb-2" />
-      <div className="glow-orb glow-orb-3" />
-
-      {/* Nav */}
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-md bg-[#0a0a0f]/80 border-b border-[#1e1e3a]">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <span className="text-xl font-bold gradient-text">⚡ JARVIS</span>
-          <div className="flex gap-4 items-center">
-            <a href="https://t.me/SuiJarvisBot" target="_blank" className="text-sm text-[#4DA2FF] hover:text-white transition">Bot</a>
-            <a href="https://github.com/wrx1234/sui-hackathon" target="_blank" className="text-sm text-[#4DA2FF] hover:text-white transition">GitHub</a>
-            <button onClick={() => setLang(lang === 'en' ? 'cn' : 'en')} className="text-sm px-3 py-1 rounded-full btn-outline">
-              {t.langSwitch}
+    <div className="min-h-screen bg-[#09090b] text-zinc-50">
+      {/* ── Nav ── */}
+      <nav className="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-[#09090b]/80 backdrop-blur-lg">
+        <div className="mx-auto max-w-6xl flex items-center justify-between px-6 h-14">
+          <a href="#" className="flex items-center gap-2 text-lg font-bold tracking-tight">
+            <span>⚡</span>
+            <GradientText>JARVIS</GradientText>
+          </a>
+          <div className="flex items-center gap-4 text-sm text-zinc-400">
+            <a href={TG} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Bot</a>
+            <a href={GH} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
+            <button
+              onClick={() => setLang(lang === 'en' ? 'cn' : 'en')}
+              className="ml-1 px-2 py-0.5 rounded border border-white/10 hover:border-white/25 transition-colors text-xs"
+            >
+              {lang === 'en' ? '🇨🇳 中文' : '🇬🇧 EN'}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="relative z-10 pt-32 pb-16 px-6 text-center max-w-5xl mx-auto min-h-[85vh] flex flex-col justify-center">
-        <div className="animate-slide-up">
-          <div className="inline-block px-4 py-1.5 rounded-full text-xs font-mono mb-8 border border-[#4DA2FF]/30 text-[#4DA2FF] bg-[#4DA2FF]/5 badge-float">
-            THE INFINITE MONEY GLITCH — POWERED BY OPENCLAW
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 gradient-text leading-tight">
-            {t.heroTitle}
-          </h1>
-        </div>
-        <p className="animate-slide-up-delay text-xl md:text-2xl font-bold text-white mb-6">
-          {t.heroSub}
-        </p>
-        <p className="animate-slide-up-delay2 text-lg text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-          {t.heroDesc}
-        </p>
-        <div className="flex flex-wrap gap-6 justify-center mt-8" style={{animation: 'slide-up 0.8s ease-out 0.5s forwards', opacity: 0}}>
-          <a href="https://t.me/SuiJarvisBot" target="_blank" className="btn-primary px-10 py-5 rounded-2xl text-white font-black text-xl no-underline shadow-lg shadow-[#4DA2FF]/25">
-            {t.ctaTelegram}
-          </a>
-          <a href="https://github.com/wrx1234/sui-hackathon" target="_blank" className="btn-outline px-10 py-5 rounded-2xl text-white font-bold text-xl no-underline">
-            {t.ctaGithub}
-          </a>
-        </div>
-        <div className="mt-12 bounce-down text-gray-500 text-2xl">↓</div>
+      {/* ── Hero ── */}
+      <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-14 relative">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="show"
+          className="flex flex-col items-center text-center gap-6 max-w-4xl"
+        >
+          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-1.5 text-xs text-zinc-400 tracking-wide">
+            {t('THE INFINITE MONEY GLITCH — POWERED BY OPENCLAW', '无限印钞术 — POWERED BY OPENCLAW', lang)}
+          </motion.div>
+
+          <motion.h1 variants={fadeUp} className="text-6xl md:text-8xl font-black tracking-tighter leading-none">
+            <GradientText>SUI DEFI JARVIS</GradientText>
+          </motion.h1>
+
+          <motion.p variants={fadeUp} className="text-xl md:text-2xl text-zinc-400 font-medium tracking-tight">
+            {t('YOUR AI ARMY ON SUI.', '你在 SUI 上的 AI 军团。', lang)}
+          </motion.p>
+
+          <motion.p variants={fadeUp} className="text-zinc-500 max-w-2xl leading-relaxed">
+            {t(
+              'Jarvis is a fully autonomous DeFi agent on Sui. It trades, tracks whales, mints stablecoins, and grows your portfolio — all from a Telegram bot. No keys. No dashboards. Just results.',
+              'Jarvis 是 Sui 上的全自主 DeFi 代理。自动交易、追踪巨鲸、铸造稳定币、管理组合 — 全在 Telegram 里完成。无需密钥，无需看盘，只看结果。',
+              lang
+            )}
+          </motion.p>
+
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-2">
+            <a
+              href={TG}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-semibold hover:bg-zinc-200 transition-colors"
+            >
+              {t('Try on Telegram', '在 Telegram 试用', lang)} <ExternalLink size={14} />
+            </a>
+            <a
+              href={GH}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold hover:border-white/30 transition-colors"
+            >
+              {t('View Source', '查看源码', lang)}
+            </a>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="mt-12 text-zinc-600"
+          >
+            <ChevronDown size={24} />
+          </motion.div>
+        </motion.div>
       </section>
 
-      <div className="section-divider max-w-4xl mx-auto" />
+      {/* ── How to Start ── */}
+      <section className="py-32 px-6">
+        <div className="mx-auto max-w-5xl">
+          <SectionTitle>
+            <GradientText>{t('GET STARTED IN 30 SECONDS', '30 秒开始赚钱', lang)}</GradientText>
+          </SectionTitle>
 
-      {/* Features */}
-      <section className="relative z-10 py-20 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-black text-center mb-4 gradient-text">{t.featTitle}</h2>
-        <p className="text-center text-gray-500 mb-12 text-sm">6 CORE MODULES. ZERO COMPROMISE.</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURES.map((f, i) => (
-            <div key={i} className="card-hover rounded-2xl p-8 bg-[#12122a]/80 backdrop-blur flex flex-col">
-              <div className="text-5xl mb-5">{f.icon}</div>
-              <h3 className="text-lg font-black text-white mb-3 uppercase tracking-wide leading-snug">
-                {(t as any)[`${f.key}Title`]}
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed flex-1">
-                {(t as any)[`${f.key}Desc`]}
-              </p>
-            </div>
-          ))}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-6 mt-16"
+          >
+            {[
+              { num: '01', icon: '📱', title: t('Open Telegram', '打开 Telegram', lang), desc: t('Click below to open @SuiJarvisBot', '点击下方打开 @SuiJarvisBot', lang) },
+              { num: '02', icon: '🚀', title: t('Press /start', '按 /start', lang), desc: t('A wallet is created for you automatically', '系统自动为你创建钱包', lang) },
+              { num: '03', icon: '💰', title: t('Start Trading', '开始交易', lang), desc: t('Swap, track whales, get AI signals', 'Swap、追鲸、获取 AI 信号', lang) },
+            ].map((s) => (
+              <motion.div key={s.num} variants={fadeUp}>
+                <GlassCard className="p-8 h-full">
+                  <div className="text-5xl font-black text-white/5 mb-4">{s.num}</div>
+                  <div className="text-2xl mb-2">{s.icon}</div>
+                  <h3 className="text-lg font-bold mb-2">{s.title}</h3>
+                  <p className="text-sm text-zinc-500">{s.desc}</p>
+                </GlassCard>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex justify-center mt-12"
+          >
+            <a
+              href={TG}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white text-black px-8 py-4 text-sm font-bold hover:bg-zinc-200 transition-colors"
+            >
+              {t('Open @SuiJarvisBot', '打开 @SuiJarvisBot', lang)} <ArrowRight size={16} />
+            </a>
+          </motion.div>
         </div>
       </section>
 
-      <div className="section-divider max-w-4xl mx-auto" />
+      {/* ── Features ── */}
+      <section className="py-32 px-6">
+        <div className="mx-auto max-w-5xl">
+          <SectionTitle>
+            <GradientText>{t('WHAT JARVIS DOES FOR YOU', 'JARVIS 为你做什么', lang)}</GradientText>
+          </SectionTitle>
+          <motion.p variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center text-zinc-500 mb-16">
+            {t('6 core modules. Zero compromise.', '6 大核心模块，零妥协。', lang)}
+          </motion.p>
 
-      {/* Live Dashboard */}
-      <section className="relative z-10 py-20 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-black text-center mb-12 gradient-text">{t.dashTitle}</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left: Stats */}
-          <div className="space-y-4">
-            <div className="card-hover rounded-2xl p-6 bg-[#12122a]/80">
-              <div className="text-sm text-gray-500 mb-1">{t.dashWallet}</div>
-              <div className="font-mono text-sm text-[#4DA2FF] break-all">0xc3aa5e...230a9b80</div>
-              <div className="text-xs text-gray-600 mt-1">Sui Testnet</div>
-            </div>
-            <div className="card-hover rounded-2xl p-6 bg-[#12122a]/80">
-              <div className="text-sm text-gray-500 mb-1">{t.dashTotal}</div>
-              <div className="text-4xl font-black text-white ticker">$12,847.52</div>
-              <div className="flex gap-4 mt-2 text-sm">
-                <span className="text-gray-400">🟦 3,142 SUI</span>
-                <span className="text-gray-400">💵 1,250 USDC</span>
-              </div>
-            </div>
-            <div className="card-hover rounded-2xl p-6 bg-[#12122a]/80">
-              <div className="text-sm text-gray-500 mb-1">{t.dashPnl}</div>
-              <div className="text-3xl font-black text-[#22c55e] ticker">+$213.40 (+1.7%)</div>
-              <div className="w-full bg-gray-800 rounded-full h-2 mt-3">
-                <div className="bg-gradient-to-r from-[#4DA2FF] to-[#22c55e] h-2 rounded-full" style={{width: '67%'}}></div>
-              </div>
-              <div className="text-xs text-gray-500 mt-1">Win Rate: 67% (31W / 16L)</div>
-            </div>
-          </div>
-          {/* Right: Trades */}
-          <div className="card-hover rounded-2xl p-6 bg-[#12122a]/80">
-            <div className="text-sm text-gray-500 mb-4">{t.dashTrades}</div>
-            <div className="space-y-3">
-              {TRADES.map((tr, i) => (
-                <div key={i} className="flex items-center justify-between py-2 border-b border-[#1e1e3a] last:border-0">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-gray-500 font-mono w-12">{tr.time}</span>
-                    <span className="text-xs px-2 py-0.5 rounded bg-[#4DA2FF]/10 text-[#4DA2FF]">{tr.op}</span>
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
+            {([
+              { Icon: Brain, title: t('SMARTER THAN YOUR FUND MANAGER', '比你的基金经理更聪明', lang), desc: t('3 AI strategies running 24/7 — momentum, mean-reversion, and sentiment-driven. Backtested. Battle-tested.', '3 大 AI 策略全天候运行 — 动量、均值回归、情绪驱动。经过回测，久经沙场。', lang) },
+              { Icon: Eye, title: t('SEE WHAT WHALES SEE', '看巨鲸所看', lang), desc: t('Real-time whale tracking on Sui. Get alerts before they move. Front-run the smart money.', '实时追踪 Sui 巨鲸动向。抢在聪明钱之前收到提醒。', lang) },
+              { Icon: Coins, title: t('MINT YOUR OWN STABLECOIN', '铸造你的稳定币', lang), desc: t('JarvisUSD via StableLayer — overcollateralized, transparent, and fully on-chain.', '通过 StableLayer 铸造 JarvisUSD — 超额抵押、透明、完全链上。', lang) },
+              { Icon: Shield, title: t('EVERY TRADE. ON-CHAIN. FOREVER.', '每笔交易，链上永存', lang), desc: t('Full audit trail stored on Walrus + Move vault. Verify everything, trust nothing.', '完整审计记录存储在 Walrus + Move 金库。验证一切，不信任任何人。', lang) },
+              { Icon: Share2, title: t('YOUR AI GOES VIRAL', '你的 AI 病毒式传播', lang), desc: t('AI-generated tweets, referral system, social sniper. Grow your network while you sleep.', 'AI 生成推文、推荐系统、社交狙击。你睡觉时也在涨粉。', lang) },
+              { Icon: Globe, title: t('SPEAKS YOUR LANGUAGE', '说你的语言', lang), desc: t('Bilingual (EN/CN). Natural language commands. No CLI needed — just talk to Jarvis.', '双语支持（中/英）。自然语言指令，无需命令行 — 直接跟 Jarvis 说话。', lang) },
+            ] as const).map(({ Icon, title, desc }) => (
+              <motion.div key={title} variants={fadeUp}>
+                <GlassCard hover className="p-6 h-full">
+                  <Icon size={24} className="text-indigo-400 mb-4" />
+                  <h3 className="text-sm font-bold tracking-wide mb-2">{title}</h3>
+                  <p className="text-sm text-zinc-500 leading-relaxed">{desc}</p>
+                </GlassCard>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Live Dashboard ── */}
+      <section className="py-32 px-6">
+        <div className="mx-auto max-w-5xl">
+          <SectionTitle>{t('LIVE AGENT DASHBOARD', '实时代理仪表盘', lang)}</SectionTitle>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <GlassCard className="p-8 mt-12">
+              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+                {/* Stats */}
+                <div className="flex flex-col gap-4">
+                  {[
+                    { label: 'Wallet', value: '0x8f3a...c2d1' },
+                    { label: t('Total Value', '总价值', lang), value: '$12,847' },
+                    { label: 'P&L', value: '+$213', color: 'text-emerald-400' },
+                  ].map((s) => (
+                    <div key={s.label} className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
+                      <div className="text-xs text-zinc-500 mb-1">{s.label}</div>
+                      <div className={`text-xl font-bold ${s.color ?? ''}`}>{s.value}</div>
+                    </div>
+                  ))}
+                </div>
+                {/* Trades */}
+                <div>
+                  <div className="text-xs text-zinc-500 mb-3 uppercase tracking-wider">{t('Recent Trades', '最近交易', lang)}</div>
+                  <div className="space-y-2">
+                    {trades.map((tr, i) => (
+                      <div key={i} className="flex items-center justify-between text-sm rounded-lg border border-white/5 bg-white/[0.02] px-4 py-2.5">
+                        <span className="text-zinc-600 w-14">{tr.time}</span>
+                        <span className="font-medium w-24">{tr.pair}</span>
+                        <span className={`w-12 font-bold ${tr.side === 'BUY' ? 'text-emerald-400' : 'text-red-400'}`}>{tr.side}</span>
+                        <span className="text-zinc-400 w-20 text-right">{tr.amount}</span>
+                        <span className={`w-20 text-right font-medium ${tr.pnl.startsWith('+') ? 'text-emerald-400' : 'text-red-400'}`}>{tr.pnl}</span>
+                      </div>
+                    ))}
                   </div>
-                  <span className="text-sm text-gray-300">{tr.detail}</span>
-                  <span className="text-sm font-bold text-[#22c55e]">{tr.pnl}</span>
+                </div>
+              </div>
+            </GlassCard>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Proof ── */}
+      <section className="py-32 px-6">
+        <div className="mx-auto max-w-4xl text-center">
+          <SectionTitle>
+            <GradientText>{t("WE DON'T DO WHITEPAPERS. WE DO PROFITS.", '我们不写白皮书，我们只赚钱。', lang)}</GradientText>
+          </SectionTitle>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="mt-12"
+          >
+            <div
+              className="text-5xl md:text-7xl font-black tracking-tighter bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+              style={{
+                backgroundSize: '200% auto',
+                animation: 'shimmer 3s linear infinite',
+              }}
+            >
+              $1,000 → $3,500
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+              {[
+                { val: '+250%', label: 'ROI' },
+                { val: '6', label: t('Days', '天', lang) },
+                { val: '24/7', label: t('Uptime', '在线', lang) },
+                { val: '3', label: t('Accounts', '账户', lang) },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="text-3xl font-black">{s.val}</div>
+                  <div className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">{s.label}</div>
                 </div>
               ))}
             </div>
-            <div className="mt-4 text-center">
-              <span className="text-xs text-gray-500">🐘 All logged on Walrus — verify anytime</span>
+
+            <p className="mt-16 text-zinc-600 italic max-w-xl mx-auto">
+              {t(
+                '"We built an AI that prints money. Then we brought it to Sui."',
+                '"我们造了一个会印钱的 AI，然后把它带到了 Sui。"',
+                lang
+              )}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Architecture ── */}
+      <section className="py-32 px-6">
+        <div className="mx-auto max-w-4xl">
+          <SectionTitle>{t('HOW IT WORKS', '运作原理', lang)}</SectionTitle>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="mt-16 space-y-6"
+          >
+            {[archRow1, archRow2].map((row, ri) => (
+              <div key={ri} className="flex flex-wrap items-center justify-center gap-3">
+                {row.map((node, ni) => (
+                  <div key={node} className="flex items-center gap-3">
+                    <GlassCard className="px-5 py-3 text-sm font-semibold whitespace-nowrap">{node}</GlassCard>
+                    {ni < row.length - 1 && <ArrowRight size={16} className="text-zinc-600 shrink-0" />}
+                  </div>
+                ))}
+              </div>
+            ))}
+            <div className="flex justify-center">
+              <ArrowDown size={16} className="text-zinc-600 rotate-180" />
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Sui Stack ── */}
+      <section className="py-32 px-6">
+        <div className="mx-auto max-w-5xl">
+          <SectionTitle>{t('BUILT ON THE SUI STACK', '构建于 SUI 生态', lang)}</SectionTitle>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center gap-4 mt-12"
+          >
+            {partners.map((p) => (
+              <motion.div key={p} variants={fadeUp}>
+                <GlassCard hover className="px-6 py-4 text-sm font-semibold">{p}</GlassCard>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Bottom CTA ── */}
+      <section className="py-32 px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+              {t("STOP TRADING MANUALLY.", '别再手动交易了。', lang)}<br />
+              <GradientText>{t('LET JARVIS COOK.', '让 JARVIS 下厨。', lang)}</GradientText> 🔥
+            </h2>
+
+            <div className="mt-10">
+              <a
+                href={TG}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-10 py-4 text-sm font-bold hover:opacity-90 transition-opacity"
+                style={{ animation: 'pulse-glow 2s ease-in-out infinite' }}
+              >
+                {t('Try on Telegram', '在 Telegram 试用', lang)} <ExternalLink size={14} />
+              </a>
+            </div>
+
+            <p className="mt-6 text-xs text-zinc-600">
+              {t('Free. Open source. No API keys needed.', '免费。开源。无需 API 密钥。', lang)}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer className="border-t border-white/5 py-12 px-6">
+        <div className="mx-auto max-w-5xl text-center space-y-4 text-xs text-zinc-600">
+          <div className="flex flex-wrap justify-center gap-6">
+            <a href={GH} target="_blank" rel="noreferrer" className="hover:text-zinc-400 transition-colors">GitHub</a>
+            <a href={TG} target="_blank" rel="noreferrer" className="hover:text-zinc-400 transition-colors">Telegram Bot</a>
+            <span>Contract: {CONTRACT.slice(0, 8)}...{CONTRACT.slice(-5)}</span>
           </div>
+          <p>{t('Built with 🤖 by AI agents, supervised by humans', '由 🤖 AI 代理构建，人类监督', lang)}</p>
+          <p>Mission OpenClaw × Vibe Hackathon 2026</p>
         </div>
-      </section>
-
-      <div className="section-divider max-w-4xl mx-auto" />
-
-      {/* Proof */}
-      <section className="relative z-10 py-20 px-6 max-w-4xl mx-auto text-center proof-glow">
-        <h2 className="text-3xl md:text-4xl font-black mb-8 gradient-text">{t.proofTitle}</h2>
-        <div className="card-hover rounded-2xl p-10 bg-[#12122a]/80 mb-8 border-[#4DA2FF]/20">
-          <div className="text-4xl md:text-6xl font-black shimmer mb-6 leading-tight">{t.proofStat}</div>
-          <div className="flex justify-center gap-10 mb-8">
-            <div className="text-center">
-              <div className="text-3xl font-black text-[#22c55e] stat-pop">+250%</div>
-              <div className="text-xs text-gray-500 mt-1">ROI</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-black text-[#4DA2FF] stat-pop" style={{animationDelay: '0.1s'}}>6</div>
-              <div className="text-xs text-gray-500 mt-1">Days</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-black text-white stat-pop" style={{animationDelay: '0.2s'}}>24/7</div>
-              <div className="text-xs text-gray-500 mt-1">Uptime</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-black text-[#7B61FF] stat-pop" style={{animationDelay: '0.3s'}}>3</div>
-              <div className="text-xs text-gray-500 mt-1">Accounts</div>
-            </div>
-          </div>
-          <p className="text-gray-400 leading-relaxed mb-6">{t.proofDesc}</p>
-          <p className="text-xl font-bold text-white italic">"{t.proofCta}"</p>
-        </div>
-      </section>
-
-      <div className="section-divider max-w-4xl mx-auto" />
-
-      {/* Architecture */}
-      <section className="relative z-10 py-20 px-6 max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-black text-center mb-12 gradient-text">{t.archTitle}</h2>
-        <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4">
-          {[
-            { icon: "👤", label: t.archUser },
-            null,
-            { icon: "📱", label: t.archBot },
-            null,
-            { icon: "🤖", label: t.archAgent },
-            null,
-            { icon: "⛓️", label: t.archChain },
-          ].map((item, i) => item ? (
-            <div key={i} className="card-hover rounded-xl px-4 py-3 bg-[#12122a]/80 text-center min-w-[100px]">
-              <div className="text-2xl mb-1">{item.icon}</div>
-              <div className="text-xs font-bold text-white">{item.label}</div>
-            </div>
-          ) : (
-            <div key={i} className="text-[#4DA2FF] text-2xl flow-line">→</div>
-          ))}
-        </div>
-        <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 mt-4">
-          {[
-            { icon: "🦞", label: t.archOc },
-            null,
-            { icon: "🧠", label: t.archStrategy },
-            null,
-            { icon: "🐋", label: t.archCetus },
-            null,
-            { icon: "🐘", label: t.archWalrus },
-          ].map((item, i) => item ? (
-            <div key={i} className="card-hover rounded-xl px-4 py-3 bg-[#12122a]/80 text-center min-w-[100px]">
-              <div className="text-2xl mb-1">{item.icon}</div>
-              <div className="text-xs font-bold text-white">{item.label}</div>
-            </div>
-          ) : (
-            <div key={i} className="text-[#7B61FF] text-2xl flow-line-delay">→</div>
-          ))}
-        </div>
-        <div className="text-center mt-6 text-sm text-gray-500">
-          {lang === 'en'
-            ? "Fully autonomous pipeline — from market analysis to trade execution to on-chain logging"
-            : "全自主流水线——从市场分析到交易执行到链上记录"}
-        </div>
-      </section>
-
-      <div className="section-divider max-w-4xl mx-auto" />
-
-      {/* Sui Stack */}
-      <section className="relative z-10 py-20 px-6 max-w-5xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-black mb-12 gradient-text">{t.stackTitle}</h2>
-        <div className="flex flex-wrap justify-center gap-6">
-          {STACK.map((s, i) => (
-            <div key={i} className="card-hover rounded-xl px-6 py-4 bg-[#12122a]/80 text-center min-w-[120px]">
-              <div className="text-3xl mb-2">{s.icon}</div>
-              <div className="text-sm font-bold text-white">{s.name}</div>
-              <div className="text-xs text-gray-500">{s.desc}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="section-divider max-w-4xl mx-auto" />
-
-      {/* Bottom CTA */}
-      <section className="relative z-10 py-20 px-6 text-center max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-black mb-8 text-white">{t.ctaBottom}</h2>
-        <a href="https://t.me/SuiJarvisBot" target="_blank" className="btn-primary inline-block px-12 py-6 rounded-2xl text-white font-black text-2xl no-underline mega-pulse">
-          {t.ctaTelegram}
-        </a>
-        <p className="mt-6 text-sm text-gray-500">
-          {lang === 'en' ? 'Free. Open source. No API keys needed.' : '免费。开源。无需 API Key。'}
-        </p>
-      </section>
-
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-[#1e1e3a] py-8 px-6 text-center">
-        <div className="flex flex-wrap justify-center gap-6 mb-4">
-          <a href="https://github.com/wrx1234/sui-hackathon" target="_blank" className="text-sm text-gray-500 hover:text-[#4DA2FF] transition no-underline">GitHub</a>
-          <a href="https://t.me/SuiJarvisBot" target="_blank" className="text-sm text-gray-500 hover:text-[#4DA2FF] transition no-underline">Telegram Bot</a>
-          <span className="text-sm text-gray-600">Contract: 0x737a73...7e65d</span>
-        </div>
-        <p className="text-sm text-gray-600 mb-2">{t.footerBuilt}</p>
-        <p className="text-xs text-gray-700">{t.footerHack}</p>
       </footer>
     </div>
   )
 }
-
-export default App
