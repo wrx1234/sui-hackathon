@@ -12,7 +12,8 @@
     "@cetusprotocol/aggregator-sdk": "latest",
     "@mysten/sui": "latest",
     "dotenv": "latest",
-    "grammy": "latest"
+    "grammy": "latest",
+    "undici": "^7.21.0"
   },
   "devDependencies": {
     "@types/node": "latest",

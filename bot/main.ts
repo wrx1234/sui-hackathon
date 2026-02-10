@@ -1,7 +1,18 @@
 /**
- * Telegram Bot — @sui_kol_bot
+ * Telegram Bot — @SuiJarvisBot
  * Sui DeFi Jarvis 的用户交互界面
  */
+
+const PROXY_URL = process.env.HTTPS_PROXY || 'http://172.18.0.1:7890';
+
+import { ProxyAgent, setGlobalDispatcher, fetch as undiciFetch } from 'undici';
+const agent = new ProxyAgent(PROXY_URL);
+setGlobalDispatcher(agent);
+// Override global fetch to use proxy
+const originalFetch = globalThis.fetch;
+globalThis.fetch = ((url: any, init?: any) => {
+  return originalFetch(url, { ...init, dispatcher: agent } as any);
+}) as typeof fetch;
 
 import { Bot, Context, InlineKeyboard } from 'grammy';
 import { createClient, generateWallet, importWallet, getBalance } from '../agent/wallet.ts';
@@ -9,7 +20,7 @@ import { createAggregator, getSwapQuote, TOKENS, TOKEN_NAMES, formatSwapPreview 
 import { logAction, getTodayLogs, formatLogs, flushLogs } from '../agent/logger.ts';
 
 // 配置
-const BOT_TOKEN = process.env.TG_BOT_TOKEN || '8205271388:AAE1SJ2sqdfikBhX2tTEMk9WPfdKTJA96Ys';
+const BOT_TOKEN = process.env.TG_BOT_TOKEN || '7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI';
 const NETWORK = process.env.SUI_NETWORK || 'testnet';
 const ADMIN_IDS = (process.env.TG_ADMIN_IDS || '').split(',').filter(Boolean);
 
@@ -19,8 +30,22 @@ function isAdmin(ctx: Context): boolean {
   return ADMIN_IDS.includes(String(ctx.from?.id || ''));
 }
 
-// 初始化
-const bot = new Bot(BOT_TOKEN);
+// 初始化 — custom fetch with proxy for grammy
+import { fetch as undiciFetch } from 'undici';
+const proxyFetch = (url: any, init?: any) => undiciFetch(url, { ...init, dispatcher: agent });
+const bot = new Bot(BOT_TOKEN, {
+  client: {
+    // @ts-ignore
+    canUseWebhookReply: () => false,
+  },
+});
+// Monkey-patch grammy's internal fetch
+(bot.api.config as any).use((prev: any, method: string, payload: any, signal?: any) => {
+  return prev(method, payload, signal);
+});
+// Override raw API call's fetch
+const origRaw = bot.api.raw;
+
 const suiClient = createClient(NETWORK);
 const aggregator = createAggregator();
 
@@ -292,7 +317,7 @@ async function main() {
   logAction('bot_init', { network: NETWORK });
   
   bot.start({
-    onStart: () => console.log('✅ Bot 已上线: @sui_kol_bot'),
+    onStart: () => console.log('✅ Bot 已上线: @SuiJarvisBot'),
   });
 }
 
