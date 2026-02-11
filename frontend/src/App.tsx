@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { SplineScene } from '@/components/ui/splite'
 import { Spotlight } from '@/components/ui/spotlight'
@@ -18,10 +18,21 @@ import {
   Target, TrendingUp, Briefcase, Zap, ShieldCheck, BarChart3,
   Crosshair, ArrowRight, Copy, CheckIcon,
 } from 'lucide-react'
+import { Footer } from '@/components/ui/Footer'
 
 function App() {
   const [lang, setLang] = useState<'en' | 'cn'>('en')
   const [copied, setCopied] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [fadeOut, setFadeOut] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFadeOut(true)
+      setTimeout(() => setLoading(false), 600)
+    }, 2500)
+    return () => clearTimeout(timer)
+  }, [])
   const t = (en: string, cn: string) => lang === 'en' ? en : cn
 
   // ==================== DATA ====================
@@ -51,11 +62,11 @@ function App() {
   ]
 
   const archCards = [
-    { name: 'Sui', Icon: Waves, description: t('Layer 1 blockchain with parallel execution and sub-second finality', 'Layer 1 区块链，并行执行，亚秒级确认'), className: 'lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2' },
-    { name: 'Cetus', Icon: Anchor, description: t('DEX aggregator routing across 30+ protocols for best price', 'DEX 聚合器，跨 30+ 协议寻找最优价格'), className: 'lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2' },
-    { name: 'Walrus', Icon: HardDrive, description: t('Decentralized storage for transparent, immutable operation logs', '去中心化存储，透明不可篡改的操作日志'), className: 'lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3' },
-    { name: 'Seal', Icon: Shield, description: t('On-chain encryption for secure strategy data storage', '链上加密，安全存储策略数据'), className: 'lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2' },
-    { name: 'OpenClaw', Icon: Brain, description: t('AI runtime powering autonomous agent decision-making', 'AI 运行时，驱动自主 Agent 决策'), className: 'lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3' },
+    { name: 'Sui', Icon: Waves, description: t('Layer 1 blockchain with parallel execution and sub-second finality', 'Layer 1 区块链，并行执行，亚秒级确认'), className: 'lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2', href: 'https://docs.sui.io/' },
+    { name: 'Cetus', Icon: Anchor, description: t('DEX aggregator routing across 30+ protocols for best price', 'DEX 聚合器，跨 30+ 协议寻找最优价格'), className: 'lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2', href: 'https://www.cetus.zone/' },
+    { name: 'Walrus', Icon: HardDrive, description: t('Decentralized storage for transparent, immutable operation logs', '去中心化存储，透明不可篡改的操作日志'), className: 'lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3', href: 'https://docs.sui.io/' },
+    { name: 'Seal', Icon: Shield, description: t('On-chain encryption for secure strategy data storage', '链上加密，安全存储策略数据'), className: 'lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2', href: 'https://move-language.github.io/move/' },
+    { name: 'OpenClaw', Icon: Brain, description: t('AI runtime powering autonomous agent decision-making', 'AI 运行时，驱动自主 Agent 决策'), className: 'lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3', href: 'https://docs.openclaw.ai/' },
   ]
 
   const stableCategories = [
@@ -98,6 +109,24 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#09090b] text-white">
+      {/* ===== LOADING SCREEN ===== */}
+      {loading && (
+        <div className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#09090b] transition-opacity duration-500 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
+          <svg width="64" height="64" viewBox="0 0 36 44" fill="none" className="mb-8" style={{ animation: 'sui-pulse 1.5s ease-in-out infinite' }}>
+            <path d="M15 2.3a2.1 2.1 0 0 1 2.4 0l13.4 9.6c.3.2.4.6.4 1v21.6a1.5 1.5 0 0 1-.4 1.1L17.4 45.3a2.1 2.1 0 0 1-2.4 0L1.6 35.6c-.3-.2-.4-.6-.4-1V13c0-.5.1-.9.4-1.1L15 2.3Z" fill="#4da2ff"/>
+          </svg>
+          <p className="text-lg font-mono text-neutral-300 mb-6 tracking-wider">Initializing Sui Jarvis...</p>
+          <p className="text-xs text-neutral-600 mb-8 tracking-widest">Just A Rather Very Intelligent System on Sui</p>
+          <div className="w-64 h-1 bg-neutral-800 rounded-full overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full" style={{ animation: 'loading-bar 2.2s ease-in-out forwards' }} />
+          </div>
+          <style>{`
+            @keyframes loading-bar { 0% { width: 0% } 60% { width: 70% } 100% { width: 100% } }
+            @keyframes sui-pulse { 0%,100% { opacity: 0.5; transform: scale(0.95) } 50% { opacity: 1; transform: scale(1.05) } }
+          `}</style>
+        </div>
+      )}
+
       {/* ===== HEADER ===== */}
       <header className="sticky top-0 z-50 w-full border-b border-neutral-800/50 bg-[#09090b]/80 backdrop-blur-lg">
         <nav className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4">
@@ -151,8 +180,10 @@ function App() {
           </div>
           <div className="flex-1 relative h-[400px] md:h-[500px]">
             {/* Sui logo overlay */}
-            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 z-10 opacity-30 pointer-events-none">
-              <svg width="48" height="48" viewBox="0 0 36 44" fill="none"><path d="M23.5 5.7 16.2.4a2.1 2.1 0 0 0-2.4 0L.4 10a2 2 0 0 0-.4 1.2v21.6c0 .5.2.9.4 1.2l13.4 9.6a2.1 2.1 0 0 0 2.4 0L29.6 34a2 2 0 0 0 .4-1.2V11.2a2 2 0 0 0-.4-1.2L23.5 5.7Z" fill="#4da2ff"/></svg>
+            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 z-10 opacity-20 pointer-events-none">
+              <svg width="48" height="48" viewBox="0 0 784 784" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M579.2 269.1a227 227 0 0 0-53.7-73l-6.8-6.2L408.1 89.4a55.4 55.4 0 0 0-73.2 0L224.3 189.9l-6.8 6.2a227 227 0 0 0-53.7 73A221.2 221.2 0 0 0 145 355.5c0 50.8 17.3 99.3 49 138.6l160.7 199.4a39.4 39.4 0 0 0 61.5 0l160.8-199.4a221 221 0 0 0 49-138.6 221.2 221.2 0 0 0-18.8-86.4h-28Zm-207.7 374c-5.6-7-48.6-61.5-48.6-128.2a48.7 48.7 0 0 1 97.4 0c0 66.7-43 121.2-48.6 128.2h-.2Zm141.2-179.8a177.6 177.6 0 0 1-19.7 36.6l-86.7 107.5c14.8-33.7 23-70 23-103.5a90.8 90.8 0 0 0-181.6 0c0 33.5 8.2 69.8 23 103.5l-86.7-107.5a177.6 177.6 0 0 1-19.7-36.6 178 178 0 0 1-14.9-71.8A180 180 0 0 1 190 277.3l3.8-3.5 3.2-2.9 174.5-157 174.5 157 3.2 2.9 3.8 3.5a180 180 0 0 1 44.6 114.2 178 178 0 0 1-14.9 71.8h-60Z" fill="#a8d4ff"/>
+              </svg>
             </div>
             <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="w-full h-full" />
           </div>
@@ -195,7 +226,7 @@ function App() {
           <BentoGrid className="lg:grid-rows-2">
             {archCards.map(c => (
               <BentoCard key={c.name} name={c.name} className={c.className} Icon={c.Icon}
-                description={c.description} href="#" cta={t('Learn more', '了解更多')}
+                description={c.description} href={c.href} cta={t('Learn more', '了解更多')}
                 background={<div className="absolute inset-0 bg-gradient-to-br from-neutral-900 to-black" />} />
             ))}
           </BentoGrid>
@@ -255,10 +286,13 @@ function App() {
             </a>
           </div>
           <p className="text-center text-neutral-600 text-sm mt-12">
-            Built by AI Agents, supervised by humans. © 2026 Sui DeFi Jarvis
+            Built by AI Agents, supervised by humans.<br />© 2026 Sui DeFi Jarvis
           </p>
         </div>
       </section>
+
+      {/* ===== FOOTER ===== */}
+      <Footer />
     </div>
   )
 }
