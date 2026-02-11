@@ -91,12 +91,19 @@ cd sui-hackathon
 python agent/main.py
 ```
 
-## 📊 AI Usage Disclosure
+## 📊 AI Usage Disclosure (Required by Hackathon Rules)
 
 This project is developed with significant AI assistance. Full transparency:
-- All AI interactions logged in `ai-logs/prompts.jsonl`
-- Auto-generated disclosure: [`AI_DISCLOSURE.md`](./AI_DISCLOSURE.md)
-- Tools: OpenClaw + Claude Opus 4.6
+
+| Tool | Model | Usage |
+|------|-------|-------|
+| **OpenClaw** v2026.2.6-3 | Claude Opus 4.6 | Agent framework, code gen, docs, deployment |
+| **Claude Code** | Claude Opus 4.6 | CLI code editing & debugging |
+
+- 📝 All AI interactions logged in `ai-logs/prompts.jsonl`
+- 📄 Full disclosure: [`AI_DISCLOSURE.md`](./AI_DISCLOSURE.md)
+- 🔑 Key prompts documented per hackathon requirement
+- ~80% code AI-generated, human-directed architecture & decisions
 
 ## 📁 Project Structure
 
