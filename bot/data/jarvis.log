@@ -21575,3 +21575,419 @@ telegram.error.NetworkError: httpx.RemoteProtocolError: Server disconnected with
 2026-02-12 02:49:56,231 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
 2026-02-12 02:50:06,596 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
 2026-02-12 02:50:16,944 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:50:27,322 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:50:37,700 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:50:48,056 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:50:58,401 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:51:08,875 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:51:19,195 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:51:29,562 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:51:39,886 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:51:50,248 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:52:00,688 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:52:11,127 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:52:21,470 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:52:31,907 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:52:42,325 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:52:52,677 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:53:03,088 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:53:13,428 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:53:23,785 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:53:34,196 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:53:44,698 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:53:55,072 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:54:05,436 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:54:15,806 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:54:26,130 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:54:36,561 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:54:46,942 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:54:57,314 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:55:07,698 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:55:18,140 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:55:28,534 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:55:38,903 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:55:49,287 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:55:59,659 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:56:10,007 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:56:20,337 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:56:30,775 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:56:41,169 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:56:51,548 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:57:01,883 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:57:12,268 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:57:22,688 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:57:33,043 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:57:43,418 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:57:53,760 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:58:04,103 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:58:14,450 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:58:24,794 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:58:35,158 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:58:45,480 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:58:55,822 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:59:06,200 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:59:16,661 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:59:27,015 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:59:37,421 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:59:47,808 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 02:59:58,116 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 03:00:08,437 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 03:00:18,807 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 03:00:29,181 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 03:00:39,580 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 03:00:49,949 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 03:01:00,389 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 03:01:05,463 - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/http_proxy.py", line 316, in handle_async_request
+    stream = await stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/http11.py", line 376, in start_tls
+    return await self._stream.start_tls(ssl_context, server_hostname, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 67, in start_tls
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 279, in do_request
+    res = await self._client.request(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 671, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 4860, in get_updates
+    await self._post(
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 303, in do_request
+    raise NetworkError(f"httpx.{err.__class__.__name__}: {err}") from err
+telegram.error.NetworkError: httpx.ConnectError: 
+2026-02-12 03:01:11,531 - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/http_proxy.py", line 316, in handle_async_request
+    stream = await stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/http11.py", line 376, in start_tls
+    return await self._stream.start_tls(ssl_context, server_hostname, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 67, in start_tls
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 279, in do_request
+    res = await self._client.request(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 671, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 4860, in get_updates
+    await self._post(
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 303, in do_request
+    raise NetworkError(f"httpx.{err.__class__.__name__}: {err}") from err
+telegram.error.NetworkError: httpx.ConnectError: 
+2026-02-12 03:01:18,047 - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/http_proxy.py", line 316, in handle_async_request
+    stream = await stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/http11.py", line 376, in start_tls
+    return await self._stream.start_tls(ssl_context, server_hostname, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 67, in start_tls
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 279, in do_request
+    res = await self._client.request(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 671, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 4860, in get_updates
+    await self._post(
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 303, in do_request
+    raise NetworkError(f"httpx.{err.__class__.__name__}: {err}") from err
+telegram.error.NetworkError: httpx.ConnectError: 
+2026-02-12 03:01:25,349 - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/http_proxy.py", line 316, in handle_async_request
+    stream = await stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_async/http11.py", line 376, in start_tls
+    return await self._stream.start_tls(ssl_context, server_hostname, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 67, in start_tls
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 279, in do_request
+    res = await self._client.request(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_utils/networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_utils/networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 671, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 4860, in get_updates
+    await self._post(
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zhaoz/.local/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 303, in do_request
+    raise NetworkError(f"httpx.{err.__class__.__name__}: {err}") from err
+telegram.error.NetworkError: httpx.ConnectError: 
+2026-02-12 03:01:39,872 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
+2026-02-12 03:01:50,193 - INFO - HTTP Request: POST https://api.telegram.org/bot7825340169:AAEL5DRdPL6E_zR6-eOSu0ttw-AxaHr0yzI/getUpdates "HTTP/1.1 200 OK"
